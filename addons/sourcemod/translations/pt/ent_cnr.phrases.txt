@@ -1,0 +1,271 @@
+"Phrases"
+{
+	"CNR Menu NoClass"
+	{
+		"pt"		"Apagar Calsse"
+	}
+	"CNR Wait"
+	{
+		"pt"		"Por favor espera alguns segundos para voltar a usar esses comando."
+	}
+	"CNR Supported"
+	{
+		"pt"		"Este servidor usa o CNR. Usa !cnr escolhe a tua classe ou funçao para ambas as equipas."
+	}
+	"CNR Class Not Found"
+	{
+		"pt"		"A classe {1} a funçao nao esta disponivel no servidor. Escolhe uma outra."
+	}
+	"CNR Disabled"
+	{
+		"pt"		"Nao podes usar este comando, CNR desativado."
+	}
+	"CNR Apply Next Round"
+	{
+		"pt"		"A classe será aplicada na próxima ronda."
+	}
+	"CNR Removal Next Round"
+	{
+		"pt"		"A tua classe será removida na próxima ronda."
+	}
+	"CNR RoleApply Next Round"
+	{
+		"pt"		"A funçao será aplicada na ronda a seguir."
+	}
+	"CNR RoleRemoval Next Round"
+	{
+		"pt"		"A tua funçao será removida na próxima ronda"
+	}
+	"CNR Description"
+	{
+		"pt"		"Descriçao"
+	}
+	"CNR Weapon Restrict"
+	{
+		"pt"		"Nao podes usar esta arma com esta classe. Escolhe outra classe !cnr."
+	}
+	"CNR Not In Team"
+	{
+		"pt"		"Tens de estar numa equipa para escolher."
+	}
+	"CNR No access"
+	{
+		"pt"		"Nao tens permissao para usar essa clase. Sem classe atual."
+	}
+	"CNR Can Use Text"
+	{
+		"pt"		"A classe {1} pode usar: {2}"
+	}
+	"CNR Can Use Text Empty"
+	{
+		"pt"		"{1} nao tem armas especiais."
+	}
+	"CNR Loadout Text"
+	{
+		"pt"		"A classe {1} tem {2} ao spawnar."
+	}
+	"CNR Loadout Text Empty"
+	{
+		"pt"		"{1} nao tem items ao spawnar."
+	}
+	"CNR No Modules"
+	{
+		"pt"		"Nao podes abrir esse menu, porque nao existem modulos para o C.N.R"
+	}
+	"CNR Classes"
+	{
+		"pt"		"Classes"
+	}
+	"CNR Roles"
+	{
+		"pt"		"Especializaçoes"
+	}
+	"CNR Health"
+	{
+		"pt"		"Vida"
+	}
+	"CNR Armor"
+	{
+		"pt"		"Armadura"
+	}
+	"CNR Helmet"
+	{
+		"pt"		"Capacete"
+	}
+	"CNR Heavysuit"
+	{
+		"pt"		"Armadura pesada"
+	}
+	"CNR Speed"
+	{
+		"pt"		"Velocidade"
+	}
+	"CNR Loadout Menu"
+	{
+		"pt"		"Equipamentos da classe"
+	}
+	"CNR CanUse Menu"
+	{
+		"pt"		"Acesso da Classe"
+	}
+	"CNR No"
+	{
+		"pt"		"Nao"
+	}
+	"CNR Yes"
+	{
+		"pt"		"Sim"
+	}
+	"CNR Select"
+	{
+		"pt"		"Selecionar"
+	}
+	"CNR Selected"
+	{
+		"pt"		"Selecionado"
+	}
+	"CNR Slower"
+	{
+		"pt"		"Lento"
+	}
+	"CNR Normal"
+	{
+		"pt"		"Normal"
+	}
+	"CNR Faster"
+	{
+		"pt"		"Rápido"
+	}
+	"CNR Pacific"
+	{
+		"pt"		"Pacífico"
+	}
+	"CNR Pacific Description"
+	{
+		"pt"		"Esta especializaçao ganha {1} créditos por nao dar dano aos CTs numa ronda."
+	}
+	"CNR Lost Pacific"
+	{
+		"pt"		"Perdeste a tua recompensa para esta ronda porque deste dano aos CTs."
+	}
+	"CNR Survivor"
+	{
+		"pt"		"Sobrevivente"
+	}
+	"CNR Survivor Description"
+	{
+		"pt"		"Esta especializaçao ganha {1} créditos por sobreviver a ronda."
+	}
+	"CNR Rebel"
+	{
+		"pt"		"Rebelde"
+	}
+	"CNR Rebel Description"
+	{
+		"pt"		"Esta especializaçao {1} créditos por cada 25 de dano aos CTs."
+	}
+	"CNR Rebel NoDamage"
+	{
+		"pt"		"Nao tiraste dano e nao ganhaste créditos."
+	}
+	"CNR Assassin"
+	{
+		"pt"		"Assassino"
+	}
+	"CNR Assassin Description"
+	{
+		"pt"		"Esta especializaçao ganha {1} créditos por cada morte com facas ou socos."
+	}
+	"CNR Sniper"
+	{
+		"pt"		"Sniper"
+	}
+	"CNR Sniper Description"
+	{
+		"pt"		"Esta especializaçao ganha {1} créditos depois de cada morte com uma sniper."
+	}
+	"CNR Ninja"
+	{
+		"pt"		"Ninja"
+	}
+	"CNR Ninja Description"
+	{
+		"pt"		"Esta especializaçao ganha {1} créditos por sobreviver a uma ronda sem levar dano."
+	}
+	"CNR Lost Ninja"
+	{
+		"pt"		"You have lost your reward for this round, because you got damaged."
+	}
+	"CNR Gunslinger"
+	{
+		"pt"		"Pistoleiro"
+	}
+	"CNR Gunslinger Description"
+	{
+		"pt"		"Esta especializaçao ganha {1} créditos após cada morte com pistolas."
+	}
+	"CNR Blaster"
+	{
+		"pt"		"Explosivo"
+	}
+	"CNR Blaster Description"
+	{
+		"pt"		"Esta especializaçao ganha {1} créditos por cada morte com granadas."
+	}
+	"CNR Butcher"
+	{
+		"pt"		"Anti-Polícia"
+	}
+	"CNR Butcher Description"
+	{
+		"pt"		"Esta especializaçao ganha {1} créditos por cada morte de um CT."
+	}
+	"CNR LR Master"
+	{
+		"pt"		"Mestre do LR"
+	}
+	"CNR LR Master Description"
+	{
+		"pt"		"Esta especializaçao ganha {1} créditos por cada vitória no LR."
+	}
+	"CNR Sufferer"
+	{
+		"pt"		"Sofredor"
+	}
+	"CNR Sufferer Description"
+	{
+		"pt"		"Esta especializaçao ganha {1} créditos por cada 25 de danos que recebe."
+	}
+	"CNR Sufferer NoDamage"
+	{
+		"pt"		"Nao recebeste dano suficiente , logo nao ganhaste créditos."
+	}
+	"CNR Headhunter"
+	{
+		"pt"		"Quebra Cabeças"
+	}
+	"CNR Headhunter Description"
+	{
+		"pt"		"Esta especializaçao ganha {1} créditos por cada kill de HeadShot."
+	}
+	"CNR NoRoles"
+	{
+		"pt"		"Nao podes abrir este menu, porque nao existem especializaçoes ativas do C.N.R."
+	}
+	"CNR NoClasses"
+	{
+		"pt"		"Nao podes abrir este menu, porque nao existem classes ativas do C.N.R."
+	}
+	"CNR Current Role Disabled"
+	{
+		"pt"		"O teu role preferido está desativado. Escolhe outro."
+	}
+	"CNR Menu NoRole"
+	{
+		"pt"		"Remover especializaçao"
+	}
+	"CNR Got Credits"
+	{
+		"pt"		"Ganhaste {1} créditos por causa da tua especializaçao."
+	}
+}

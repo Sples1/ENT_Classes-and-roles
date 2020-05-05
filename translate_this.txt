@@ -1,0 +1,271 @@
+"Phrases"
+{
+	"CNR Menu NoClass"
+	{
+		"en"		"Delete Class"
+	}
+	"CNR Wait"
+	{
+		"en"		"Please wait a few seconds before using this command."
+	}
+	"CNR Supported"
+	{
+		"en"		"The server uses C-N-R. Use !cnr to choose your class or role for both teams."
+	}
+	"CNR Class Not Found"
+	{
+		"en"		"The {1} class is no longer available on the server. No class set."
+	}
+	"CNR Disabled"
+	{
+		"en"		"You can't use that command, because C-N-R is disabled."
+	}
+	"CNR Apply Next Round"
+	{
+		"en"		"The choosen class will be applied on the next round."
+	}
+	"CNR Removal Next Round"
+	{
+		"en"		"Your class will be removed on the next round."
+	}
+	"CNR RoleApply Next Round"
+	{
+		"en"		"The choosen role will be applied on the next round."
+	}
+	"CNR RoleRemoval Next Round"
+	{
+		"en"		"Your role will be removed on the next round."
+	}
+	"CNR Description"
+	{
+		"en"		"Description"
+	}
+	"CNR Weapon Restrict"
+	{
+		"en"		"You can't use that weapon with your current class. Use !cnr to choose class."
+	}
+	"CNR Not In Team"
+	{
+		"en"		"You have to be in a team to choose class."
+	}
+	"CNR No access"
+	{
+		"en"		"You have no permission to use that class. No class set."
+	}
+	"CNR Can Use Text"
+	{
+		"en"		"The {1} class can use: {2}"
+	}
+	"CNR Can Use Text Empty"
+	{
+		"en"		"The {1} has no special weapons."
+	}
+	"CNR Loadout Text"
+	{
+		"en"		"The {1} class gets {2} on spawn."
+	}
+	"CNR Loadout Text Empty"
+	{
+		"en"		"The {1} has no extra items on spawn."
+	}
+	"CNR No Modules"
+	{
+		"en"		"You can't open this menu, because there are no enabled modules for C.N.R."
+	}
+	"CNR Classes"
+	{
+		"en"		"Classes"
+	}
+	"CNR Roles"
+	{
+		"en"		"Roles"
+	}
+	"CNR Health"
+	{
+		"en"		"Health"
+	}
+	"CNR Armor"
+	{
+		"en"		"Armor"
+	}
+	"CNR Helmet"
+	{
+		"en"		"Helmet"
+	}
+	"CNR Heavysuit"
+	{
+		"en"		"Heavysuit"
+	}
+	"CNR Speed"
+	{
+		"en"		"Speed"
+	}
+	"CNR Loadout Menu"
+	{
+		"en"		"Class loadout"
+	}
+	"CNR CanUse Menu"
+	{
+		"en"		"Class access"
+	}
+	"CNR No"
+	{
+		"en"		"No"
+	}
+	"CNR Yes"
+	{
+		"en"		"Yes"
+	}
+	"CNR Select"
+	{
+		"en"		"Select"
+	}
+	"CNR Selected"
+	{
+		"en"		"Selected"
+	}
+	"CNR Slower"
+	{
+		"en"		"Slower"
+	}
+	"CNR Normal"
+	{
+		"en"		"Normal"
+	}
+	"CNR Faster"
+	{
+		"en"		"Faster"
+	}
+	"CNR Pacific"
+	{
+		"en"		"Pacific"
+	}
+	"CNR Pacific Description"
+	{
+		"en"		"This role gives {1} credits for not damaging CT's in a round."
+	}
+	"CNR Lost Pacific"
+	{
+		"en"		"You have lost your reward for this round, because you damaged a CT as Pacific."
+	}
+	"CNR Survivor"
+	{
+		"en"		"Survivor"
+	}
+	"CNR Survivor Description"
+	{
+		"en"		"This role gives {1} credits for surviving the round."
+	}
+	"CNR Rebel"
+	{
+		"en"		"Rebel"
+	}
+	"CNR Rebel Description"
+	{
+		"en"		"This role gives {1} credits after every 25 damage dealt to CT's on round end."
+	}
+	"CNR Rebel NoDamage"
+	{
+		"en"		"You haven't hurt players so, there's no reward."
+	}
+	"CNR Assassin"
+	{
+		"en"		"Assassin"
+	}
+	"CNR Assassin Description"
+	{
+		"en"		"This role gives {1} credits after every kill with a knife or fists."
+	}
+	"CNR Sniper"
+	{
+		"en"		"Sniper"
+	}
+	"CNR Sniper Description"
+	{
+		"en"		"This role gives {1} credits after every kill with sniper rifles."
+	}
+	"CNR Ninja"
+	{
+		"en"		"Ninja"
+	}
+	"CNR Ninja Description"
+	{
+		"en"		"This role gives {1} credits for surviving the round without receiving damage."
+	}
+	"CNR Lost Ninja"
+	{
+		"en"		"You have lost your reward for this round, because you got damaged."
+	}
+	"CNR Gunslinger"
+	{
+		"en"		"Gunslinger"
+	}
+	"CNR Gunslinger Description"
+	{
+		"en"		"This role gives {1} credits after every kill with pistols."
+	}
+	"CNR Blaster"
+	{
+		"en"		"Blaster"
+	}
+	"CNR Blaster Description"
+	{
+		"en"		"This role gives {1} credits after every kill with grenades."
+	}
+	"CNR Butcher"
+	{
+		"en"		"Butcher"
+	}
+	"CNR Butcher Description"
+	{
+		"en"		"This role gives {1} credits after every killed CT."
+	}
+	"CNR LR Master"
+	{
+		"en"		"LR Master"
+	}
+	"CNR LR Master Description"
+	{
+		"en"		"This role gives {1} credits after a LR winning."
+	}
+	"CNR Sufferer"
+	{
+		"en"		"Sufferer"
+	}
+	"CNR Sufferer Description"
+	{
+		"en"		"This role gives {1} credits after every 25 received damage."
+	}
+	"CNR Sufferer NoDamage"
+	{
+		"en"		"You haven't got hurt by players, so there's no reward."
+	}
+	"CNR Headhunter"
+	{
+		"en"		"Headhunter"
+	}
+	"CNR Headhunter Description"
+	{
+		"en"		"This role gives {1} credits after every headshot."
+	}
+	"CNR NoRoles"
+	{
+		"en"		"You can't open this menu, because there are no enabled roles for C.N.R."
+	}
+	"CNR NoClasses"
+	{
+		"en"		"You can't open this menu, because there are no enabled classes for C.N.R."
+	}
+	"CNR Current Role Disabled"
+	{
+		"en"		"Your current role is disabled. Please choose another one."
+	}
+	"CNR Menu NoRole"
+	{
+		"en"		"Delete Role"
+	}
+	"CNR Got Credits"
+	{
+		"en"		"You have gained {1} credits because of your role."
+	}
+}

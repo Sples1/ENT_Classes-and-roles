@@ -1,0 +1,271 @@
+"Phrases"
+{
+	"CNR Menu NoClass"
+	{
+		"cze"		"Smazat třídu"
+	}
+	"CNR Wait"
+	{
+		"cze"		"Před použitím tohoto příkazu počkejte několik sekund."
+	}
+	"CNR Supported"
+	{
+		"cze"		"Tento server používá C-N-R. Použijte !cnr k výběru vaší třídy nebo role pro oba týmy."
+	}
+	"CNR Class Not Found"
+	{
+		"cze"		"Třída {1} již na serveru není k dispozici. Žádná vybratá třída."
+	}
+	"CNR Disabled"
+	{
+		"cze"		"Tento příkaz nemůžete použít, protože je zakázán C-N-R."
+	}
+	"CNR Apply Next Round"
+	{
+		"cze"		"Vybraná třída bude dostupná v dalším kole"
+	}
+	"CNR Removal Next Round"
+	{
+		"cze"		"Vaše třída bude odstraněna v dalším kole."
+	}
+	"CNR RoleApply Next Round"
+	{
+		"cze"		"Vybraná role bude dostupná v dalším kole"
+	}
+	"CNR RoleRemoval Next Round"
+	{
+		"cze"		"Vaše role bude v dalším kole odstraněna."
+	}
+	"CNR Description"
+	{
+		"cze"		"Popis"
+	}
+	"CNR Weapon Restrict"
+	{
+		"cze"		"Tuto zbraň nemůžete použít se svou současnou třídou. Použijte !cnr k výběru třídy."
+	}
+	"CNR Not In Team"
+	{
+		"cze"		"Musíte být v týmu, abyste si vybrali třídu."
+	}
+	"CNR No access"
+	{
+		"cze"		"K použití této třídy nemáte povolení. Žádná třída nenastavená."
+	}
+	"CNR Can Use Text"
+	{
+		"cze"		"Třída {1} může použít: {2}"
+	}
+	"CNR Can Use Text Empty"
+	{
+		"cze"		"{1} nemá žádné speciální zbraně."
+	}
+	"CNR Loadout Text"
+	{
+		"cze"		"Třída {1} dostane {2} pri spawne."
+	}
+	"CNR Loadout Text  Empty"
+	{
+		"cze"		"{1} nemá žádné další položky pri spawne."
+	}
+	"CNR No Modules"
+	{
+		"cze"		"Toto menu nemůžete otevřít, protože pro C.N.R neexistují žádné aktivované moduly"
+	}
+	"CNR Classes"
+	{
+		"cze"		"Třídy"
+	}
+	"CNR Roles"
+	{
+		"cze"		"Role"
+	}
+	"CNR Health"
+	{
+		"cze"		"Zdraví"
+	}
+	"CNR Armor"
+	{
+		"cze"		"Brnění"
+	}
+	"CNR Helmet"
+	{
+		"cze"		"Helma"
+	}
+	"CNR Heavysuit"
+	{
+		"cze"		"Heavysuit"
+	}
+	"CNR Speed"
+	{
+		"cze"		"Rychlost"
+	}
+	"CNR Loadout Menu"
+	{
+		"cze"		"Vybavení třídy"
+	}
+	"CNR CanUse Menu"
+	{
+		"cze"		"Přístup třídy"
+	}
+	"CNR No"
+	{
+		"cze"		"Ne"
+	}
+	"CNR Yes"
+	{
+		"cze"		"Áno"
+	}
+	"CNR Select"
+	{
+		"cze"		"Výber"
+	}
+	"CNR Selected"
+	{
+		"cze"		"Vybraný"
+	}
+	"CNR Slower"
+	{
+		"cze"		"Pomaleji"
+	}
+	"CNR Normal"
+	{
+		"cze"		"Normální"
+	}
+	"CNR Faster"
+	{
+		"cze"		"Rychleji"
+	}
+	"CNR Pacific"
+	{
+		"cze"		"Pacifista"
+	}
+	"CNR Pacific Description"
+	{
+		"cze"		"Tato role dává {1} kredity za nepoškození CT v kole."
+	}
+	"CNR Lost Pacific"
+	{
+		"cze"		"Za toto kolo jste ztratili odměnu, protože jste poškodili CT jako Pacifik."
+	}
+	"CNR Survivor"
+	{
+		"cze"		"Survivor"
+	}
+	"CNR Survivor Description"
+	{
+		"cze"		"Tato role dává {1} kredity za přežití v kole."
+	}
+	"CNR Rebel"
+	{
+		"cze"		"Rebel Vole"
+	}
+	"CNR Rebel Description"
+	{
+		"cze"		"Tato role dává {1} kredity po každých 25 poškozeních způsobených CT na konci kola."
+	}
+	"CNR Rebel NoDamage"
+	{
+		"cze"		"Neublížili jste hráčům, takže nedostanete žádnú odměna."
+	}
+	"CNR Assassin"
+	{
+		"cze"		"Assassin"
+	}
+	"CNR Assassin Description"
+	{
+		"cze"		"Tato role dává {1} kredity po každém zabití nožem nebo pěstmi."
+	}
+	"CNR Sniper"
+	{
+		"cze"		"Sniper"
+	}
+	"CNR Sniper Description"
+	{
+		"cze"		"Tato role dává {1} kredity po každém zabití pomocí odstřelovací pušky."
+	}
+	"CNR Ninja"
+	{
+		"cze"		"Ninja"
+	}
+	"CNR Ninja Description"
+	{
+		"cze"		"Tato role dává {1} kredity za přežití v kole bez poškození(damagu)."
+	}
+	"CNR Lost Ninja"
+	{
+		"cze"		"Za toto kolo jste ztratili odměnu, protože dostali poškození(damage)."
+	}
+	"CNR Gunslinger"
+	{
+		"cze"		"Pištolník"
+	}
+	"CNR Gunslinger Description"
+	{
+		"cze"		"Tato role dává {1} kredity po každém zabití pistolí."
+	}
+	"CNR Blaster"
+	{
+		"cze"		"Blaster"
+	}
+	"CNR Blaster Description"
+	{
+		"cze"		"Tato role dává {1} kredity po každém zabití granátem."
+	}
+	"CNR Butcher"
+	{
+		"cze"		"Řezník"
+	}
+	"CNR Butcher Description"
+	{
+		"cze"		"Tato role dává {1} kredity po každém zabitém CT."
+	}
+	"CNR LR Master"
+	{
+		"cze"		"LR Master"
+	}
+	"CNR LR Master Description"
+	{
+		"cze"		"Tato role dává {1} kredity po vítězství LR."
+	}
+	"CNR Sufferer"
+	{
+		"cze"		"Mučeník"
+	}
+	"CNR Sufferer Description"
+	{
+		"cze"		"Tato role dává {1} kredity po každých 25 obdržených škodách."
+	}
+	"CNR Sufferer NoDamage"
+	{
+		"cze"		"Neublížil vám žádny hráč, takže neexistuje žádná odměna."
+	}
+	"CNR Headhunter"
+	{
+		"cze"		"Headhunter"
+	}
+	"CNR Headhunter Description"
+	{
+		"cze"		"Tato role dává {1} kredity po každém výstřelu."
+	}
+	"CNR NoRoles"
+	{
+		"cze"		"Toto menu nelze otevřít, protože pro C.N.R nejsou k dispozici žádné povolené role."
+	}
+	"CNR NoClasses"
+	{
+		"cze"		"Toto menu nemůžete otevřít, protože neexistují žádné povolené třídy pro C.N.R."
+	}
+	"CNR Current Role Disabled"
+	{
+		"cze"		"Vaše aktuální role je deaktivována. Vyberte prosím jinou."
+	}
+	"CNR Menu NoRole"
+	{
+		"cze"		"Smazat roli"
+	}
+	"CNR Got Credits"
+	{
+		"cze"		"Získali jste {1} díky vaší roli."
+	}
+}

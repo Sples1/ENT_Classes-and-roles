@@ -1,0 +1,271 @@
+"Phrases"
+{
+	"CNR Menu NoClass"
+	{
+		"ro"		"Sterge Clasa"
+	}
+	"CNR Wait"
+    {
+        "ro"        "Te rugam sa astepti cateva secunde pentru a folosi aceasta comanda."
+    }
+	"CNR Supported"
+	{
+		"ro"		"Server-ul foloseste CNR. Foloseste !cnr pentru a alege clasa sau rolul pentru fiecare echipa."
+	}
+	"CNR Class Not Found"
+	{
+		"ro"		"Clasa {1} nu mai este disponibila pe server. Nicio clasa setata."
+	}
+	"CNR Disabled"
+	{
+		"ro"		"Nu poti folosi aceasta comanda, deoarece CNR este dezactivat."
+	}
+	"CNR Apply Next Round"
+	{
+		"ro"		"Clasa selectata se va aplica runda urmatoare."
+	}
+	"CNR Removal Next Round"
+	{
+		"ro"		"Clasa ta se va reseta runda urmatoare."
+	}
+	"CNR RoleApply Next Round"
+	{
+		"ro"		"Rolul selectat se va aplica runda urmatoare."
+	}
+	"CNR RoleRemoval Next Round"
+	{
+		"ro"		"Rolul tau se va reseta runda urmatoare."
+	}
+	"CNR Description"
+	{
+		"ro"		"Descriere"
+	}
+	"CNR Weapon Restrict"
+	{
+		"ro"		"Nu poti utiliza aceea arma cu clasa actuala. Foloseste !cnr pentru a alege o clasa."
+	}
+	"CNR Not In Team"
+	{
+		"ro"		"Trebuie sa alegi o echipa pentru a selecta o clasa."
+	}
+	"CNR No access"
+	{
+		"ro"		"Nu detii permisiunea pentru a accesa aceasta clasa. Nicio clasa setata."
+	}
+	"CNR Can Use Text"
+	{
+		"ro"		"Clasa {1} poate utiliza: {2}"
+	}
+	"CNR Can Use Text Empty"
+	{
+		"ro"		"Clasa {1} nu detine arme speciale."
+	}
+	"CNR Loadout Text"
+	{
+		"ro"		"Clasa {1} primeste {2} la spawn."
+	}
+	"CNR Loadout Text Empty"
+	{
+		"ro"		"Clasa {1} nu detine iteme extra la spawn."
+	}
+	"CNR No Modules"
+	{
+		"ro"		"Nu poti deschide acest meniu, deoarece nu sunt module activate pentru CNR"
+	}
+	"CNR Classes"
+	{
+		"ro"		"Clase"
+	}
+	"CNR Roles"
+	{
+		"ro"		"Roluri"
+	}
+	"CNR Health"
+	{
+		"ro"		"Viata"
+	}
+	"CNR Armor"
+	{
+		"ro"		"Armura"
+	}
+	"CNR Helmet"
+	{
+		"ro"		"Casca"
+	}
+	"CNR Heavysuit"
+	{
+		"ro"		"Armura grea"
+	}
+	"CNR Speed"
+	{
+		"ro"		"Viteza"
+	}
+	"CNR Loadout Menu"
+	{
+		"ro"		"Echipament clasa"
+	}
+	"CNR CanUse Menu"
+	{
+		"ro"		"Acces clasa"
+	}
+	"CNR No"
+	{
+		"ro"		"Nu"
+	}
+	"CNR Yes"
+	{
+		"ro"		"Da"
+	}
+	"CNR Select"
+	{
+		"ro"		"Selecteaza"
+	}
+	"CNR Selected"
+	{
+		"ro"		"Selectat"
+	}
+	"CNR Slower"
+	{
+		"ro"		"Slower"
+	}
+	"CNR Normal"
+	{
+		"ro"		"Normal"
+	}
+	"CNR Faster"
+	{
+		"ro"		"Faster"
+	}
+	"CNR Pacific"
+	{
+		"ro"		"Pacific"
+	}
+	"CNR Pacific Description"
+	{
+		"ro"		"Acest rol acorda {1} credite pentru ne-atacarea unui Gardian."
+	}
+	"CNR Lost Pacific"
+	{
+		"ro"		"Ai pierdut recopensa pe aceasta runda, deoarece ai cauzat damage unui Gardiana ca Pacific."
+	}
+	"CNR Survivor"
+	{
+		"ro"		"Survivor"
+	}
+	"CNR Survivor Description"
+	{
+		"ro"		"Acest rol acorda {1} credite pentru supravietuirea rundei."
+	}
+	"CNR Rebel"
+	{
+		"ro"		"Rebel"
+	}
+	"CNR Rebel Description"
+	{
+		"ro"		"Acest rol acorda {1} credite pentru provocarea a 25 daune unui Gardian."
+	}
+	"CNR Rebel NoDamage"
+	{
+		"ro"		"Nu ai cauzat daune nimanui, deci nu vei primi o recompensa."
+	}
+	"CNR Assassin"
+	{
+		"ro"		"Assassin"
+	}
+	"CNR Assassin Description"
+	{
+		"ro"		"Acest rol acorda {1} credite pentru fiecare ucidere cu un cutit sau cu pumnii."
+	}
+	"CNR Sniper"
+	{
+		"ro"		"Sniper"
+	}
+	"CNR Sniper Description"
+	{
+		"ro"		"Acest rol acorda {1} credite pentru fiecare ucidere cu un sniper."
+	}
+	"CNR Ninja"
+	{
+		"ro"		"Ninja"
+	}
+	"CNR Ninja Description"
+	{
+		"ro"		"Acest rol acorda {1} credite pentru supravietuirea fara daune."
+	}
+	"CNR Lost Ninja"
+	{
+		"ro"		"Ai pierdut recopensa pe aceasta runda, deoarece ai primit daune."
+	}
+	"CNR Gunslinger"
+	{
+		"ro"		"Gunslinger"
+	}
+	"CNR Gunslinger Description"
+	{
+		"ro"		"Acest rol acorda {1} credite pentru fiecare uccidere cu un pistol."
+	}
+	"CNR Blaster"
+	{
+		"ro"		"Blaster"
+	}
+	"CNR Blaster Description"
+	{
+		"ro"		"Acest rol acorda {1} credite pentru fiecare ucidere cu grenazi."
+	}
+	"CNR Butcher"
+	{
+		"ro"		"Butcher"
+	}
+	"CNR Butcher Description"
+	{
+		"ro"		"Acest rol acorda {1} credite pentru fiecare ucidere a unui Gardian."
+	}
+	"CNR LR Master"
+	{
+		"ro"		"LR Master"
+	}
+	"CNR LR Master Description"
+	{
+		"ro"		"Acest rol acorda {1} credite pentru castigarea unui LR."
+	}
+	"CNR Sufferer"
+	{
+		"ro"		"Sufferer"
+	}
+	"CNR Sufferer Description"
+	{
+		"ro"		"Acest rol acorda {1} credite pentru fiecare 25 de daune primite."
+	}
+	"CNR Sufferer NoDamage"
+	{
+		"ro"		"Nu ai primit daune de la alti jucatori, deci nu vei primi o recompensa."
+	}
+	"CNR Headhunter"
+	{
+		"ro"		"Headhunter"
+	}
+	"CNR Headhunter Description"
+	{
+		"ro"		"Acest rol acorda {1} credite pentru fiecare headshot."
+	}
+	"CNR NoRoles"
+	{
+		"ro"		"Nu poti deschide acest meniu, deoarece nu exista roluri pentru CNR."
+	}
+	"CNR NoClasses"
+	{
+		"ro"		"Nu poti deschide acest meniu, deoarece nu exista clase pentru CNR."
+	}
+	"CNR Current Role Disabled"
+	{
+		"ro"		"Rolul tau este momentan dezactivat. Te rugam sa selectezi alt rol."
+	}
+	"CNR Menu NoRole"
+	{
+		"ro"		"Sterge rol"
+	}
+	"CNR Got Credits"
+	{
+		"ro"		"Ai primit {1} credite multumita rolului tau."
+	}
+}

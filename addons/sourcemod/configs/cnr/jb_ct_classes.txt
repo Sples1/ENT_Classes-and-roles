@@ -1,0 +1,82 @@
+"Jailbreak_Classes_by_Entity"
+{
+	"Patrol" 														//Name of the Class in menu
+	{
+		"hp"						"90"							//HP amount for the class
+		"armor"						"10"							//Armor amount for the class (0 - disable)
+		"helmet"					"0"								//Give helmet to the class: 0 - no, 1 - yes
+		"heavysuit"					"0"								//Enable or disable heavysuit for this class (get less damagee)
+		"speed"						"1.1"							//Speed multiplier for class (default 1.0)
+		"spawn_weapons"				"tagrenade,mp5sd,usp_silencer"	//Class gets the given weapons on spawn (multiple with commas and don't use weapon_)
+		"access_to"					""								//Restrict weapon to classes with access (multiple with commas and don't use weapon_)
+		"custom_model"				""								//Path to custom model for that class or leave empty to disable
+		"flag"						"a"								//Sets flag to access to the class
+	}
+	"Guardian"
+	{
+		"hp"						"100"
+		"armor"						"100"
+		"helmet"					"1"
+		"heavysuit"					"1"
+		"speed"						"0.88"
+		"spawn_weapons"				"shield,hkp2000"
+		"access_to"					"shield,negev,m249"
+		"custom_model"				""
+		"flag"						"a"	
+	}
+	"Sniper"
+	{
+		"hp"						"90"
+		"armor"						"25"
+		"helmet"					"0"
+		"heavysuit"					"0"
+		"speed"						"0.9"
+		"spawn_weapons"				"awp,p250"
+		"access_to"					"awp,scar20,ssg08,g3sg1"
+		"custom_model"				""
+	}
+	"Medic"
+	{
+		"hp"						"110"
+		"armor"						"0"
+		"helmet"					"1"
+		"heavysuit"					"0"
+		"speed"						"1.0"
+		"spawn_weapons"				"healthshot,healthshot,healthshot,xm1014,deagle"
+		"access_to"					""
+		"custom_model"				""
+	}
+	"Gunner"
+	{
+		"hp"						"85"
+		"armor"						"50"
+		"helmet"					"0"
+		"heavysuit"					"0"
+		"speed"						"1.0"
+		"spawn_weapons"				"m4a1_silencer,fiveseven"
+		"access_to"					"ak47,m4a1_silencer,ssg08,m4a4,aug,sg556"
+		"custom_model"				""
+	}
+	"Pyro"
+	{
+		"hp"						"100"
+		"armor"						"0"
+		"helmet"					"0"
+		"heavysuit"					"0"
+		"speed"						"1.0"
+		"spawn_weapons"				"molotov,hegrenade"
+		"access_to"					"ak47"
+		"custom_model"				""
+	}
+	"Sheriff"
+	{
+		"hp"						"100"
+		"armor"						"20"
+		"helmet"					"0"
+		"heavysuit"					"0"
+		"speed"						"1.0"
+		"spawn_weapons"				"revolver,ak47,hegrenade"
+		"access_to"					"revolver,ak47"
+		"custom_model"				""
+	}
+}

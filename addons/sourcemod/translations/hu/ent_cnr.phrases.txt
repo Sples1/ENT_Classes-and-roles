@@ -1,0 +1,273 @@
+"Phrases"
+{
+	"CNR Menu NoClass"
+	{
+		"hu"		"Kaszt törlése"
+	}
+	"CNR Wait"
+	{
+		"hu"		"Kérlek várj pár másodpercet a parancs használata előtt."
+	}
+	"CNR Supported"
+	{
+		"hu"		"A szerveren C-N-R üzemel. Használd a !cnr parancsot, hogy kasztot vagy szerepet válassz az aktuális csapatban."
+	}
+	"CNR Class Not Found"
+	{
+		"hu"		"A {1} kaszt már nem elérhető a szerveren. Kasztod törölve."
+	}
+	"CNR Disabled"
+	{
+		"hu"		"Nem használhatod ezt a parancsot, mert a C-N-R ki van kapcsolva a szerveren."
+	}
+	"CNR Apply Next Round"
+	{
+		"hu"		"A kiválasztott kaszt a következő körtől lesz alkalmazva."
+	}
+	"CNR Removal Next Round"
+	{
+		"hu"		"A kasztod törlése a következő körtől lesz alkalmazva."
+	}
+	"CNR RoleApply Next Round"
+	{
+		"hu"		"A kiválasztott szerep a következő körtől lesz alkalmazva."
+	}
+	"CNR RoleRemoval Next Round"
+	{
+		"hu"		"A szereped törlése a következő körtől lesz alkalmazva."
+	}
+	"CNR Description"
+	{
+		"hu"		"Leírás"
+	}
+	"CNR Weapon Restrict"
+	{
+		"hu"		"Nem használhatod ezt a fegyvert a jelenlegi kasztoddal. Használd a !cnr parancsot, hogy kasztot válts."
+	}
+	"CNR Not In Team"
+	{
+		"hu"		"Egy csapatban kell lenned ahhoz, hogy használd ezt a parancsot."
+	}
+	"CNR No access"
+	{
+		"hu"		"Nincs engedélyed, hogy használd ezt a kasztot. Kasztod törölve."
+	}
+	"CNR Can Use Text"
+	{
+		"hu"		"A {1} kaszt használhat: {2}"
+	}
+	"CNR Can Use Text Empty"
+	{
+		"hu"		"A {1} kasztnak nincs különlegesen használható fegyvere."
+	}
+	"CNR Loadout Text"
+	{
+		"hu"		"A {1} kaszt kap {2} amikor kezdődik a kör."
+	}
+	"CNR Loadout Text Empty"
+	{
+		"hu"		"A {1} kaszt nem kap semmi extrát amikor kezdődik a kör."
+	}
+	"CNR No Modules"
+	{
+		"hu"		"Nem tudod megnyitni ezt a menüt, mert nincsenek bekapcsovla modulok a C-N-R-ben."
+	}
+	"CNR Classes"
+	{
+		"hu"		"Kasztok"
+	}
+	"CNR Roles"
+	{
+		"hu"		"Szerepek"
+	}
+	"CNR Health"
+	{
+		"hu"		"Élet"
+	}
+	"CNR Armor"
+	{
+		"hu"		"Páncél"
+	}
+	"CNR Helmet"
+	{
+		"hu"		"Sisak"
+	}
+	"CNR Heavysuit"
+	{
+		"hu"		"Nehézöltözék"
+	}
+	"CNR Speed"
+	{
+		"hu"		"Gyorsaság"
+	}
+	"CNR Loadout Menu"
+	{
+		"hu"		"Kaszt felszerelés"
+	}
+	"CNR CanUse Menu"
+	{
+		"hu"		"Kaszt fegyverhasználat"
+	}
+	"CNR No"
+	{
+		"hu"		"Nem"
+	}
+	"CNR Yes"
+	{
+		"hu"		"Igen"
+	}
+	"CNR Select"
+	{
+		"hu"		"Kiválaszt"
+	}
+	"CNR Selected"
+	{
+		"hu"		"Kiválasztva"
+	}
+	"CNR Slower"
+	{
+		"hu"		"Lassabb"
+	}
+	"CNR Normal"
+	{
+		"hu"		"Normális"
+	}
+	"CNR Faster"
+	{
+		"hu"		"Gyorsabb"
+	}
+	"CNR Pacific"
+	{
+		"hu"		"Békés"
+	}
+	"CNR Pacific Description"
+	{
+		"hu"		"Ez a szerep {1} kreditet kap, ha nem sebez CT-t a körben."
+	}
+	"CNR Lost Pacific"
+	{
+		"hu"		"Elvesztetted a szerepeddel járó jutalmat erre a körre, mert CT-t sebeztél."
+	}
+	"CNR Survivor"
+	{
+		"hu"		"Túlélő"
+	}
+	"CNR Survivor Description"
+	{
+		"hu"		"Ez a szerep {1} kreditet kap, ha túléli a kört."
+	}
+	"CNR Rebel"
+	{
+		"hu"		"Lázadó"
+	}
+	"CNR Rebel Description"
+	{
+		"hu"		"Ez a szerep {1} kreditet kap, minden 25 sebzés után, melyet CT-nek adott le."
+	}
+	"CNR Rebel NoDamage"
+	{
+		"hu"		"Nem sebeztél CT-t ebben a körben, így nem kapsz jutalmat."
+	}
+	"CNR Assassin"
+	{
+		"hu"		"Orgyilkos"
+	}
+	"CNR Assassin Description"
+	{
+		"hu"		"Ez a szerep {1} kreditet kap, ha ellenfelét ököllel vagy késsel öli meg."
+	}
+	"CNR Sniper"
+	{
+		"hu"		"Mesterlövész"
+	}
+	"CNR Sniper Description"
+	{
+		"hu"		"Ez a szerep {1} kreditet kap, ha ellenfelét mesterlövész puskával lövi le."
+	}
+	"CNR Ninja"
+	{
+		"hu"		"Nindzsa"
+	}
+	"CNR Ninja Description"
+	{
+		"hu"		"Ez a szerep {1} kreditet kap, ha kapott sebzés nélkül fejezi be a kört."
+	}
+	"CNR Lost Ninja"
+	{
+		"hu"		"Elvesztetted a szerepeddel járó jutalmat erre a körre, mert sebzést kaptál."
+	}
+	"CNR Gunslinger"
+	{
+		"hu"		"Pisztolyhős"
+	}
+	"CNR Gunslinger Description"
+	{
+		"hu"		"Ez a szerep {1} kreditet kap, ha ellenfelét pisztollyal lövi le."
+	}
+	"CNR Blaster"
+	{
+		"hu"		"Robbantó"
+	}
+	"CNR Blaster Description"
+	{
+		"#format"	"{1:i}"
+		"hu"		"Ez a szerep {1} kreditet kap, ha ellenfelét gránáttal öli meg."
+	}
+	"CNR Butcher"
+	{
+		"hu"		"Kivégző"
+	}
+	"CNR Butcher Description"
+	{
+		"hu"		"Ez a szerep {1} kreditet kap minden megölt CT után."
+	}
+	"CNR LR Master"
+	{
+		"hu"		"LR Mester"
+	}
+	"CNR LR Master Description"
+	{
+		"hu"		"Ez a szerep {1} kreditet kap minden megnyert LR játék után."
+	}
+	"CNR Sufferer"
+	{
+		"hu"		"Szenvedő"
+	}
+	"CNR Sufferer Description"
+	{
+		"hu"		"Ez a szerep {1} kreditet kap minden 25 kapott sebzés után."
+	}
+	"CNR Sufferer NoDamage"
+	{
+		"hu"		"Nem kaptál sebzést a kör alatt, így nem kapsz jutalamt."
+	}
+	"CNR Headhunter"
+	{
+		"hu"		"Fejvadász"
+	}
+	"CNR Headhunter Description"
+	{
+		"hu"		"Ez a szerep {1} kreditet kap minden fejlövés után."
+	}
+	"CNR NoRoles"
+	{
+		"hu"		"Nem tudod megnyitni ezt a menüt, mert nincsenek bekapcsolva szerepek a C.N.R-ben."
+	}
+	"CNR NoClasses"
+	{
+		"hu"		"Nem tudod megnyitni ezt a menüt, mert nincsenek bekapcsolva kasztok a C.N.R-ben."
+	}
+	"CNR Current Role Disabled"
+	{
+		"hu"		"A jelenlegi szereped kikapcsolták. Kérlek válassz egy másikat!"
+	}
+	"CNR Menu NoRole"
+	{
+		"hu"		"Szerep törlése"
+	}
+	"CNR Got Credits"
+	{
+		"#format"	"{1:i}"
+		"hu"		"Kaptál {1} kreditet a szereped miatt."
+	}
+}
