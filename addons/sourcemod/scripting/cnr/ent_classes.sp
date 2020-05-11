@@ -22,6 +22,7 @@
 ConVar gH_Cvar_CNR_BlockWeapons_T;
 ConVar gH_Cvar_CNR_BlockWeapons_CT;
 ConVar gH_Cvar_CNR_ForceFist;
+ConVar gH_Cvar_CNR_Announce;
 
 char gShadow_CNR_ConfigFile_T[PLATFORM_MAX_PATH];
 char gShadow_CNR_ConfigFile_CT[PLATFORM_MAX_PATH];
@@ -30,6 +31,7 @@ char gShadow_CNR_BlockedWeapons[128];
 bool gShadow_CNR_BlockWeapons_CT = true;
 bool gShadow_CNR_BlockWeapons_T = false;
 bool gShadow_CNR_ForceFist = false;
+bool gShadow_CNR_Announce = true;
 
 //Client Class
 Handle gCookie_CNR_ChoosenClass_T = INVALID_HANDLE;
@@ -77,10 +79,12 @@ public void Classes_OnPluginStart()
 	gH_Cvar_CNR_BlockWeapons_CT = CreateConVar("sm_cnr_only_classweapons_ct", "1", "Enable or disable weapon restrictions for CT:", 0, true, 0.0, true, 1.0);
 	gH_Cvar_CNR_BlockWeapons_T = CreateConVar("sm_cnr_only_classweapons_t", "0", "Enable or disable weapon restrictions for T:", 0, true, 0.0, true, 1.0);
 	gH_Cvar_CNR_ForceFist = CreateConVar("sm_cnr_forcefist", "1", "Forces Fists instead of knife at spawn", 0, true, 0.0, true, 1.0);
+	gH_Cvar_CNR_Announce = CreateConVar("sm_cnr_spawnmessage", "1", "Announce CNR in roundstart", 0, true, 0.0, true, 1.0);
 	
 	HookConVarChange(gH_Cvar_CNR_BlockWeapons_CT, OnCvarChange_Settings);
 	HookConVarChange(gH_Cvar_CNR_BlockWeapons_T, OnCvarChange_Settings);
 	HookConVarChange(gH_Cvar_CNR_ForceFist, OnCvarChange_Settings);
+	HookConVarChange(gH_Cvar_CNR_Announce, OnCvarChange_Settings);
 	
 	gCookie_CNR_ChoosenClass_T = RegClientCookie("CNR_ChoosenClass_T", "CNR TClassNew", CookieAccess_Private);	
 	gCookie_CNR_ChoosenClass_CT = RegClientCookie("CNR_ChoosenClass_CT", "CNR CTClassNew", CookieAccess_Private);
@@ -104,6 +108,7 @@ public void Classes_OnConfigsExecuted()
 	gShadow_CNR_BlockWeapons_T = view_as<bool>(GetConVarInt(gH_Cvar_CNR_BlockWeapons_T));
 	gShadow_CNR_BlockWeapons_CT = view_as<bool>(GetConVarInt(gH_Cvar_CNR_BlockWeapons_CT));
 	gShadow_CNR_ForceFist = view_as<bool>(GetConVarInt(gH_Cvar_CNR_ForceFist));
+	gShadow_CNR_Announce = view_as<bool>(GetConVarInt(gH_Cvar_CNR_Announce));
 	
 	if (gShadow_CNR_BlockWeapons_T || gShadow_CNR_BlockWeapons_CT)
 	{
@@ -219,6 +224,8 @@ public void OnCvarChange_Settings(ConVar cvar, char[] oldvalue, char[] newvalue)
 		gShadow_CNR_BlockWeapons_CT = view_as<bool>(GetConVarInt(gH_Cvar_CNR_BlockWeapons_CT));
 	else if (cvar == gH_Cvar_CNR_ForceFist)
 		gShadow_CNR_ForceFist = view_as<bool>(GetConVarInt(gH_Cvar_CNR_ForceFist));
+	else if (cvar == gH_Cvar_CNR_Announce)
+		gShadow_CNR_Announce = view_as<bool>(GetConVarInt(gH_Cvar_CNR_Announce));
 		
 	if (gShadow_CNR_BlockWeapons_T || gShadow_CNR_BlockWeapons_CT)
 	{
@@ -257,7 +264,7 @@ public Action OnPlayerSpawn_Class(Event event, char[] name, bool dontBroadcast)
 	int client = GetClientOfUserId(event.GetInt("userid"));
 	if (IsValidClient(client))
 	{
-		if (GameRules_GetProp("m_bWarmupPeriod") == 0)
+		if (gShadow_CNR_Announce && GameRules_GetProp("m_bWarmupPeriod") == 0)
 		{
 			CPrintToChat(client, "%s %t", gShadow_CNR_ChatBanner, "CNR Supported");
 		}
