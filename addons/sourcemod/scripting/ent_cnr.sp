@@ -69,7 +69,7 @@ public Plugin myinfo =
 	name = "[CSGO] Jailbreak Classes and Roles", 
 	author = "Entity", 
 	description = "Jailbreak classes and roles", 
-	version = "0.1.1"
+	version = "0.1.2"
 };
 
 public void OnClientPostAdminCheck(int client)

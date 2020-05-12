@@ -23,6 +23,7 @@ ConVar gH_Cvar_CNR_BlockWeapons_T;
 ConVar gH_Cvar_CNR_BlockWeapons_CT;
 ConVar gH_Cvar_CNR_ForceFist;
 ConVar gH_Cvar_CNR_Announce;
+ConVar gH_Cvar_CNR_CustomTag;
 
 char gShadow_CNR_ConfigFile_T[PLATFORM_MAX_PATH];
 char gShadow_CNR_ConfigFile_CT[PLATFORM_MAX_PATH];
@@ -32,6 +33,7 @@ bool gShadow_CNR_BlockWeapons_CT = true;
 bool gShadow_CNR_BlockWeapons_T = false;
 bool gShadow_CNR_ForceFist = false;
 bool gShadow_CNR_Announce = true;
+bool gShadow_CNR_CustomTag = false;
 
 //Client Class
 Handle gCookie_CNR_ChoosenClass_T = INVALID_HANDLE;
@@ -77,6 +79,7 @@ public void Classes_OnPluginStart()
 	BuildPath(Path_SM, gShadow_CNR_ConfigFile_CT, sizeof(gShadow_CNR_ConfigFile_CT), "configs/cnr/jb_ct_classes.txt");
 
 	gH_Cvar_CNR_BlockWeapons_CT = CreateConVar("sm_cnr_only_classweapons_ct", "1", "Enable or disable weapon restrictions for CT:", 0, true, 0.0, true, 1.0);
+	gH_Cvar_CNR_CustomTag = CreateConVar("sm_cnr_class_customtag", "0", "If it's 1 CNR menu won't add (VIP) to flagged classes:", 0, true, 0.0, true, 1.0);
 	gH_Cvar_CNR_BlockWeapons_T = CreateConVar("sm_cnr_only_classweapons_t", "0", "Enable or disable weapon restrictions for T:", 0, true, 0.0, true, 1.0);
 	gH_Cvar_CNR_ForceFist = CreateConVar("sm_cnr_forcefist", "1", "Forces Fists instead of knife at spawn", 0, true, 0.0, true, 1.0);
 	gH_Cvar_CNR_Announce = CreateConVar("sm_cnr_spawnmessage", "1", "Announce CNR in roundstart", 0, true, 0.0, true, 1.0);
@@ -109,6 +112,7 @@ public void Classes_OnConfigsExecuted()
 	gShadow_CNR_BlockWeapons_CT = view_as<bool>(GetConVarInt(gH_Cvar_CNR_BlockWeapons_CT));
 	gShadow_CNR_ForceFist = view_as<bool>(GetConVarInt(gH_Cvar_CNR_ForceFist));
 	gShadow_CNR_Announce = view_as<bool>(GetConVarInt(gH_Cvar_CNR_Announce));
+	gShadow_CNR_CustomTag = view_as<bool>(GetConVarInt(gH_Cvar_CNR_CustomTag));
 	
 	if (gShadow_CNR_BlockWeapons_T || gShadow_CNR_BlockWeapons_CT)
 	{
@@ -226,6 +230,8 @@ public void OnCvarChange_Settings(ConVar cvar, char[] oldvalue, char[] newvalue)
 		gShadow_CNR_ForceFist = view_as<bool>(GetConVarInt(gH_Cvar_CNR_ForceFist));
 	else if (cvar == gH_Cvar_CNR_Announce)
 		gShadow_CNR_Announce = view_as<bool>(GetConVarInt(gH_Cvar_CNR_Announce));
+	else if (cvar == gH_Cvar_CNR_CustomTag)
+		gShadow_CNR_CustomTag = view_as<bool>(GetConVarInt(gH_Cvar_CNR_CustomTag));
 		
 	if (gShadow_CNR_BlockWeapons_T || gShadow_CNR_BlockWeapons_CT)
 	{
@@ -308,7 +314,8 @@ void ReadClassesToMenu(int client, int team)
 		}
 		else if (StrContains("abcdefghijklmnopqrstz", buffer) != -1)
 		{
-			Format(gShadow_temp_classname, sizeof(gShadow_temp_classname), "%s - (VIP)", gShadow_temp_classname);
+			if (!gShadow_CNR_CustomTag)
+				Format(gShadow_temp_classname, sizeof(gShadow_temp_classname), "%s - (VIP)", gShadow_temp_classname);
 			
 			GetFlagInt(buffer);
 			
@@ -377,7 +384,9 @@ public int ClassChoice(Menu menu, MenuAction action, int client, int itemNum)
 
 void ShowDetails(int client, int team, char[] choosen)
 {
-	ReplaceString(choosen, 128, " - (VIP)", "");
+	if (!gShadow_CNR_CustomTag)
+		ReplaceString(choosen, 128, " - (VIP)", "");
+		
 	Format(gShadow_CNR_Client_TemporaryChoose[client], sizeof(gShadow_CNR_Client_TemporaryChoose), choosen);
 	KeyValues kv = CreateKeyValues("jailbreak_classes");
 	
