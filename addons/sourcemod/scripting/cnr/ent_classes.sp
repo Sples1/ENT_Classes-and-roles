@@ -36,6 +36,7 @@ ConVar g_hRoundTime;
 int g_RoundTime;
 int FreezeTime;
 Handle RoundTimeTicker;
+bool RTT_KillYourSelf;
 
 bool gShadow_CNR_HealStarted = false;
 char gShadow_CNR_BlockedWeapons[128];
@@ -153,8 +154,8 @@ public Action Classes_RoundStart(Event event, const char[] name, bool dontBroadc
 	}
 	else
 	{
-		delete RoundTimeTicker;
-		RoundTimeTicker = null;
+		RTT_KillYourSelf = true;
+		
 		RoundTimeTicker = CreateTimer(1.0, Timer_RoundTimeLeft, g_RoundTime, TIMER_REPEAT|TIMER_FLAG_NO_MAPCHANGE);
 	}
 }
@@ -177,8 +178,7 @@ public Action OnRoundEnd_Class(Event event, const char[] name, bool dontBroadcas
 	
 	if (RoundTimeTicker != null)
 	{
-		delete RoundTimeTicker;
-		RoundTimeTicker = null;
+		RTT_KillYourSelf = true;
 	}
 }
 
@@ -504,34 +504,42 @@ void ShowDetails(int client, int team, char[] choosen)
 
 public Action Timer_RoundTimeLeft(Handle timer, int RoundTime)
 {
-	if (g_RoundTime != 0)
+	if (RTT_KillYourSelf)
 	{
-		g_RoundTime = g_RoundTime - 1;
-		
-		int HRoundTime = GameRules_GetProp("m_iRoundTime");
-		int ToCheckTime = (HRoundTime - FreezeTime);
-		
-		if (ToCheckTime > g_RoundTime && !gShadow_CNR_HealStarted)
+		RTT_KillYourSelf = false;
+		return Plugin_Stop;
+	}
+	else
+	{
+		if (g_RoundTime != 0)
 		{
-			gShadow_CNR_HealStarted = true;
-		
-			for (int idx = 1; idx <= MaxClients ; idx++)
+			g_RoundTime = g_RoundTime - 1;
+			
+			int HRoundTime = GameRules_GetProp("m_iRoundTime");
+			int ToCheckTime = (HRoundTime - FreezeTime);
+			
+			if (ToCheckTime > g_RoundTime && !gShadow_CNR_HealStarted)
 			{
-				if (IsValidClient(idx))
+				gShadow_CNR_HealStarted = true;
+			
+				for (int idx = 1; idx <= MaxClients ; idx++)
 				{
-					if (gShadow_CNR_Client_OverHeal_Checker[idx] != INVALID_HANDLE)
+					if (IsValidClient(idx))
 					{
-						gShadow_CNR_Client_OverHeal_Checker[idx] = INVALID_HANDLE;
-						KillHealTimer[idx] = true;
+						if (gShadow_CNR_Client_OverHeal_Checker[idx] != INVALID_HANDLE)
+						{
+							gShadow_CNR_Client_OverHeal_Checker[idx] = INVALID_HANDLE;
+							KillHealTimer[idx] = true;
+						}
+						
+						gShadow_CNR_Client_OverHeal_Checker[idx] = CreateTimer(0.5, Timer_OverHeal, idx, TIMER_REPEAT|TIMER_FLAG_NO_MAPCHANGE);
 					}
-					
-					gShadow_CNR_Client_OverHeal_Checker[idx] = CreateTimer(0.5, Timer_OverHeal, idx, TIMER_REPEAT|TIMER_FLAG_NO_MAPCHANGE);
 				}
 			}
 		}
+		else
+			return Plugin_Stop;
 	}
-	else
-		return Plugin_Stop;
 	return Plugin_Continue;
 }
 
