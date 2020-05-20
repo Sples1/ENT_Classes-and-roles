@@ -24,10 +24,20 @@ ConVar gH_Cvar_CNR_BlockWeapons_CT;
 ConVar gH_Cvar_CNR_ForceFist;
 ConVar gH_Cvar_CNR_Announce;
 ConVar gH_Cvar_CNR_CustomTag;
+ConVar gH_Cvar_CNR_AllowChangeInFreeze;
+ConVar gH_Cvar_CNR_AutoOpen;
+ConVar gH_Cvar_CNR_DefaultCT;
+ConVar gH_Cvar_CNR_DefaultT;
 
 char gShadow_CNR_ConfigFile_T[PLATFORM_MAX_PATH];
 char gShadow_CNR_ConfigFile_CT[PLATFORM_MAX_PATH];
 
+ConVar g_hRoundTime;
+int g_RoundTime;
+int FreezeTime;
+Handle RoundTimeTicker;
+
+bool gShadow_CNR_HealStarted = false;
 char gShadow_CNR_BlockedWeapons[128];
 bool gShadow_CNR_BlockWeapons_CT = true;
 bool gShadow_CNR_BlockWeapons_T = false;
@@ -46,6 +56,7 @@ char gShadow_CNR_Client_ChoosenClassName_T[MAXPLAYERS+1][32];
 char gShadow_CNR_Client_ChoosenClassName_CT[MAXPLAYERS+1][32];
 bool gShadow_CNR_Client_PickupHandled[MAXPLAYERS+1];
 bool gShadow_CNR_Client_HasAccess[MAXPLAYERS+1];
+bool KillHealTimer[MAXPLAYERS+1] = false;
 
 Handle gShadow_CNR_Client_OverHeal_Checker[MAXPLAYERS+1] = INVALID_HANDLE;
 
@@ -83,11 +94,18 @@ public void Classes_OnPluginStart()
 	gH_Cvar_CNR_BlockWeapons_T = CreateConVar("sm_cnr_only_classweapons_t", "0", "Enable or disable weapon restrictions for T:", 0, true, 0.0, true, 1.0);
 	gH_Cvar_CNR_ForceFist = CreateConVar("sm_cnr_forcefist", "1", "Forces Fists instead of knife at spawn", 0, true, 0.0, true, 1.0);
 	gH_Cvar_CNR_Announce = CreateConVar("sm_cnr_spawnmessage", "1", "Announce CNR in roundstart", 0, true, 0.0, true, 1.0);
+	gH_Cvar_CNR_AllowChangeInFreeze = CreateConVar("sm_cnr_allow_classchange_infreeze", "1", "Allow class change in FreezeTime", 0, true, 0.0, true, 1.0);
+	gH_Cvar_CNR_AutoOpen = CreateConVar("sm_cnr_classes_auto_open", "1", "Auto opens the classes in Round Start", 0, true, 0.0, true, 1.0);
+	gH_Cvar_CNR_DefaultCT = CreateConVar("sm_cnr_default_ct_class", "", "Default CT Class if player didn't set it (Empty - No Default)", 0);
+	gH_Cvar_CNR_DefaultT = CreateConVar("sm_cnr_default_t_class", "", "Default T Class if player didn't set it (Empty - No Default)", 0);
+	
+	HookEvent("round_start", Classes_RoundStart);
 	
 	HookConVarChange(gH_Cvar_CNR_BlockWeapons_CT, OnCvarChange_Settings);
 	HookConVarChange(gH_Cvar_CNR_BlockWeapons_T, OnCvarChange_Settings);
 	HookConVarChange(gH_Cvar_CNR_ForceFist, OnCvarChange_Settings);
 	HookConVarChange(gH_Cvar_CNR_Announce, OnCvarChange_Settings);
+	HookConVarChange(gH_Cvar_CNR_CustomTag, OnCvarChange_Settings);
 	
 	gCookie_CNR_ChoosenClass_T = RegClientCookie("CNR_ChoosenClass_T", "CNR TClassNew", CookieAccess_Private);	
 	gCookie_CNR_ChoosenClass_CT = RegClientCookie("CNR_ChoosenClass_CT", "CNR CTClassNew", CookieAccess_Private);
@@ -120,6 +138,26 @@ public void Classes_OnConfigsExecuted()
 	}
 }
 
+public Action Classes_RoundStart(Event event, const char[] name, bool dontBroadcast)
+{
+	gShadow_CNR_HealStarted = false;
+	
+	ConVar g_cvFreezeTime = FindConVar("mp_freezetime");
+	FreezeTime = GetConVarInt(g_cvFreezeTime);
+
+	g_hRoundTime = FindConVar("mp_roundtime");
+	g_RoundTime = GetConVarInt(g_hRoundTime) * 60;
+	if (RoundTimeTicker == null || RoundTimeTicker == INVALID_HANDLE)
+	{
+		RoundTimeTicker = CreateTimer(1.0, Timer_RoundTimeLeft, g_RoundTime, TIMER_REPEAT|TIMER_FLAG_NO_MAPCHANGE);
+	}
+	else
+	{
+		delete RoundTimeTicker;
+		RoundTimeTicker = CreateTimer(1.0, Timer_RoundTimeLeft, g_RoundTime, TIMER_REPEAT|TIMER_FLAG_NO_MAPCHANGE);
+	}
+}
+
 public Action OnRoundEnd_Class(Event event, const char[] name, bool dontBroadcast)
 {
 	for (int idx = 1; idx <= MaxClients ; idx++)
@@ -130,10 +168,15 @@ public Action OnRoundEnd_Class(Event event, const char[] name, bool dontBroadcas
 		
 			if (gShadow_CNR_Client_OverHeal_Checker[idx] != INVALID_HANDLE)
 			{
-				KillTimer(gShadow_CNR_Client_OverHeal_Checker[idx]);
 				gShadow_CNR_Client_OverHeal_Checker[idx] = INVALID_HANDLE;
+				KillHealTimer[idx] = true;
 			}
 		}
+	}
+	
+	if (RoundTimeTicker != null || RoundTimeTicker != INVALID_HANDLE)
+	{
+		delete RoundTimeTicker;
 	}
 }
 
@@ -273,6 +316,11 @@ public Action OnPlayerSpawn_Class(Event event, char[] name, bool dontBroadcast)
 		if (gShadow_CNR_Announce && GameRules_GetProp("m_bWarmupPeriod") == 0)
 		{
 			CPrintToChat(client, "%s %t", gShadow_CNR_ChatBanner, "CNR Supported");
+			
+			if (gH_Cvar_CNR_AutoOpen.BoolValue)
+			{
+				Submenu_Classes(client);
+			}
 		}
 		
 		if (gShadow_CNR_BlockWeapons_T || gShadow_CNR_BlockWeapons_CT)
@@ -452,6 +500,39 @@ void ShowDetails(int client, int team, char[] choosen)
 	menu.Display(client, MENU_TIME_FOREVER);
 }
 
+public Action Timer_RoundTimeLeft(Handle timer, int RoundTime)
+{
+	if (g_RoundTime != 0)
+	{
+		g_RoundTime = g_RoundTime - 1;
+		
+		int HRoundTime = GameRules_GetProp("m_iRoundTime");
+		int ToCheckTime = (HRoundTime - FreezeTime);
+		
+		if (ToCheckTime > g_RoundTime && !gShadow_CNR_HealStarted)
+		{
+			gShadow_CNR_HealStarted = true;
+		
+			for (int idx = 1; idx <= MaxClients ; idx++)
+			{
+				if (IsValidClient(idx))
+				{
+					if (gShadow_CNR_Client_OverHeal_Checker[idx] != INVALID_HANDLE)
+					{
+						gShadow_CNR_Client_OverHeal_Checker[idx] = INVALID_HANDLE;
+						KillHealTimer[idx] = true;
+					}
+					
+					gShadow_CNR_Client_OverHeal_Checker[idx] = CreateTimer(0.5, Timer_OverHeal, idx, TIMER_REPEAT|TIMER_FLAG_NO_MAPCHANGE);
+				}
+			}
+		}
+	}
+	else
+		return Plugin_Stop;
+	return Plugin_Continue;
+}
+
 public int DetailsChoice(Menu menu, MenuAction action, int client, int itemNum)
 {
 	if (action == MenuAction_Cancel)
@@ -463,18 +544,35 @@ public int DetailsChoice(Menu menu, MenuAction action, int client, int itemNum)
 		char info[64];
 		int gShadow_temp_team = GetClientTeam(client);
 		GetMenuItem(menu, itemNum, info, sizeof(info));
+		
 		if (StrEqual(info, "select"))
 		{
 			if (T_Class_Exist(gShadow_CNR_Client_TemporaryChoose[client]) && (gShadow_temp_team == CS_TEAM_T))
 			{
 				SetClientCookie(client, gCookie_CNR_ChoosenClass_T, gShadow_CNR_Client_TemporaryChoose[client]);
+				
+				if (!gShadow_CNR_HealStarted && gH_Cvar_CNR_AllowChangeInFreeze.BoolValue)
+				{
+					CreateTimer(0.3, Timer_LoadoutFix, client, TIMER_FLAG_NO_MAPCHANGE);
+				}
+				else
+				{
+					CPrintToChat(client, "%s %t", gShadow_CNR_ChatBanner, "CNR Apply Next Round");
+				}
 			}
 			else if (CT_Class_Exist(gShadow_CNR_Client_TemporaryChoose[client]) && (gShadow_temp_team == CS_TEAM_CT))
 			{
 				SetClientCookie(client, gCookie_CNR_ChoosenClass_CT, gShadow_CNR_Client_TemporaryChoose[client]);
+				
+				if (!gShadow_CNR_HealStarted && gH_Cvar_CNR_AllowChangeInFreeze.BoolValue)
+				{
+					CreateTimer(0.3, Timer_LoadoutFix, client, TIMER_FLAG_NO_MAPCHANGE);
+				}
+				else
+				{
+					CPrintToChat(client, "%s %t", gShadow_CNR_ChatBanner, "CNR Apply Next Round");
+				}
 			}
-			
-			CPrintToChat(client, "%s %t", gShadow_CNR_ChatBanner, "CNR Apply Next Round");
 		}
 		else if (StrEqual(info, "canuse"))
 		{
@@ -508,8 +606,8 @@ public void Class_OnClientDisconnect(int client)
 	
 	if (gShadow_CNR_Client_OverHeal_Checker[client] != INVALID_HANDLE)
 	{
-		KillTimer(gShadow_CNR_Client_OverHeal_Checker[client]);
 		gShadow_CNR_Client_OverHeal_Checker[client] = INVALID_HANDLE;
+		KillHealTimer[client] = true;
 	}
 }
 
@@ -575,7 +673,24 @@ public void PlayerInformations(int client)
 		}
 		else
 		{
-			ClearLocalClass(client, CS_TEAM_T);
+			char Default[128];
+			gH_Cvar_CNR_DefaultT.GetString(Default, sizeof(Default));
+			if (!StrEqual(Default, ""))
+			{
+				if (T_Class_Exist(Default))
+				{
+					ClassHasAccess(client, Default, CS_TEAM_T);
+					if (gShadow_CNR_Client_HasAccess[client])
+					{
+						Class_GetAttributes_ForTeam(client, Default, CS_TEAM_T);
+						SetClientCookie(client, gCookie_CNR_ChoosenClass_T, Default);
+					}
+				}
+			}
+			else
+			{
+				ClearLocalClass(client, CS_TEAM_T);
+			}
 		}
 		
 		if (!StrEqual(gShadow_CNR_Client_ChoosenClassName_CT[client], ""))
@@ -605,7 +720,24 @@ public void PlayerInformations(int client)
 		}
 		else
 		{
-			ClearLocalClass(client, CS_TEAM_CT);
+			char Default[128];
+			gH_Cvar_CNR_DefaultCT.GetString(Default, sizeof(Default));
+			if (!StrEqual(Default, ""))
+			{
+				if (CT_Class_Exist(Default))
+				{
+					ClassHasAccess(client, Default, CS_TEAM_CT);
+					if (gShadow_CNR_Client_HasAccess[client])
+					{
+						Class_GetAttributes_ForTeam(client, Default, CS_TEAM_CT);
+						SetClientCookie(client, gCookie_CNR_ChoosenClass_CT, Default);
+					}
+				}
+			}
+			else
+			{
+				ClearLocalClass(client, CS_TEAM_CT);
+			}
 		}
 	}
 }
@@ -892,16 +1024,24 @@ public Action Timer_HandlePickup(Handle timer, int client)
 
 public Action Timer_OverHeal(Handle timer, int client)
 {
-	if (!IsClientInLastRequest(client))
+	if (!KillHealTimer[client])
 	{
-		if ((GetEntProp(client, Prop_Data, "m_iHealth") > gShadow_CNR_Client_CT_HP[client]) && (GetClientTeam(client) == CS_TEAM_CT))
+		if (!IsClientInLastRequest(client))
 		{
-			SetEntityHealth(client, gShadow_CNR_Client_CT_HP[client]);
+			if ((GetEntProp(client, Prop_Data, "m_iHealth") > gShadow_CNR_Client_CT_HP[client]) && (GetClientTeam(client) == CS_TEAM_CT))
+			{
+				SetEntityHealth(client, gShadow_CNR_Client_CT_HP[client]);
+			}
+			else if ((GetEntProp(client, Prop_Data, "m_iHealth") > gShadow_CNR_Client_T_HP[client]) && (GetClientTeam(client) == CS_TEAM_T))
+			{
+				SetEntityHealth(client, gShadow_CNR_Client_T_HP[client]);
+			}
 		}
-		else if ((GetEntProp(client, Prop_Data, "m_iHealth") > gShadow_CNR_Client_T_HP[client]) && (GetClientTeam(client) == CS_TEAM_T))
-		{
-			SetEntityHealth(client, gShadow_CNR_Client_T_HP[client]);
-		}
+	}
+	else
+	{
+		KillHealTimer[client] = false;
+		return Plugin_Stop;
 	}
 	return Plugin_Continue;
 }
@@ -912,6 +1052,27 @@ public Action Timer_LoadoutFix(Handle timer, int client)
 
 	if (IsValidClient(client))
 	{
+		StripAllWeapons(client);
+		RemoveDangerZone(client);
+	
+		if (gShadow_CNR_ForceFist)
+		{
+			int weapon;
+			while((weapon = GetPlayerWeaponSlot(client, CS_SLOT_KNIFE)) != -1)
+			{
+				RemovePlayerItem(client, weapon);
+				AcceptEntityInput(weapon, "Kill");
+			}
+		
+			int iMelee = GivePlayerItem(client, "weapon_fists");
+			EquipPlayerWeapon(client, iMelee);
+		}
+		else
+		{
+			int iMelee = GivePlayerItem(client, "weapon_knife");
+			EquipPlayerWeapon(client, iMelee);
+		}
+	
 		int gShadow_temp_team = GetClientTeam(client);
 		if (!StrEqual(gShadow_CNR_Client_ChoosenClassName_T[client], "") && (gShadow_temp_team == CS_TEAM_T))
 		{
@@ -924,11 +1085,9 @@ public Action Timer_LoadoutFix(Handle timer, int client)
 				
 				if (gShadow_CNR_Client_OverHeal_Checker[client] != INVALID_HANDLE)
 				{
-					KillTimer(gShadow_CNR_Client_OverHeal_Checker[client]);
 					gShadow_CNR_Client_OverHeal_Checker[client] = INVALID_HANDLE;
+					KillHealTimer[client] = true;
 				}
-				
-				gShadow_CNR_Client_OverHeal_Checker[client] = CreateTimer(0.5, Timer_OverHeal, client, TIMER_REPEAT|TIMER_FLAG_NO_MAPCHANGE);
 				
 				SetEntProp(client, Prop_Send, "m_bHasHelmet", gShadow_CNR_Client_T_HELMET[client]);
 				
@@ -944,10 +1103,7 @@ public Action Timer_LoadoutFix(Handle timer, int client)
 				SetEntPropFloat(client, Prop_Send, "m_flLaggedMovementValue", gShadow_CNR_Client_T_SPEED[client]);
 				
 				if (!StrEqual(gShadow_CNR_Client_T_Specials[client], ""))
-				{
-					StripAllWeapons(client);
-					RemoveDangerZone(client);
-				
+				{				
 					char buffer[32];
 					if (StrContains(gShadow_CNR_Client_T_Specials[client], ",") != -1)
 					{
@@ -956,18 +1112,26 @@ public Action Timer_LoadoutFix(Handle timer, int client)
 						{
 							Format(buffer, sizeof(buffer), "weapon_%s", gShadow_CNR_WeaponList[client][Tidx]);
 							if (!Client_HasWeapon(client, buffer) && !StrEqual(buffer, "weapon_healthshot"))
+							{
 								GivePlayerItem(client, buffer);
+							}
 							else if (StrEqual(buffer, "weapon_healthshot"))
+							{
 								GivePlayerItem(client, buffer);
+							}
 						}
 					}
 					else
 					{
 						Format(buffer, sizeof(buffer), "weapon_%s", gShadow_CNR_Client_T_Specials[client]);
 						if (!Client_HasWeapon(client, buffer) && !StrEqual(buffer, "weapon_healthshot"))
+						{
 							GivePlayerItem(client, buffer);
+						}
 						else if (StrEqual(buffer, "weapon_healthshot"))
+						{
 							GivePlayerItem(client, buffer);
+						}
 					}
 				}
 				
@@ -985,11 +1149,9 @@ public Action Timer_LoadoutFix(Handle timer, int client)
 				
 				if (gShadow_CNR_Client_OverHeal_Checker[client] != INVALID_HANDLE)
 				{
-					KillTimer(gShadow_CNR_Client_OverHeal_Checker[client]);
 					gShadow_CNR_Client_OverHeal_Checker[client] = INVALID_HANDLE;
+					KillHealTimer[client] = true;
 				}
-				
-				gShadow_CNR_Client_OverHeal_Checker[client] = CreateTimer(0.5, Timer_OverHeal, client, TIMER_REPEAT|TIMER_FLAG_NO_MAPCHANGE);
 				
 				SetEntProp(client, Prop_Send, "m_bHasHelmet", gShadow_CNR_Client_CT_HELMET[client]);
 				
@@ -1006,9 +1168,6 @@ public Action Timer_LoadoutFix(Handle timer, int client)
 				
 				if (!StrEqual(gShadow_CNR_Client_CT_Specials[client], ""))
 				{
-					StripAllWeapons(client);
-					RemoveDangerZone(client);
-				
 					char buffer[32];
 					if (StrContains(gShadow_CNR_Client_CT_Specials[client], ",") != -1)
 					{
@@ -1017,18 +1176,26 @@ public Action Timer_LoadoutFix(Handle timer, int client)
 						{
 							Format(buffer, sizeof(buffer), "weapon_%s", gShadow_CNR_WeaponList[client][Tidx]);
 							if (!Client_HasWeapon(client, buffer) && !StrEqual(buffer, "weapon_healthshot"))
+							{
 								GivePlayerItem(client, buffer);
+							}
 							else if (StrEqual(buffer, "weapon_healthshot"))
+							{
 								GivePlayerItem(client, buffer);
+							}
 						}
 					}
 					else
 					{
 						Format(buffer, sizeof(buffer), "weapon_%s", gShadow_CNR_Client_CT_Specials[client]);
 						if (!Client_HasWeapon(client, buffer) && !StrEqual(buffer, "weapon_healthshot"))
+						{
 							GivePlayerItem(client, buffer);
+						}
 						else if (StrEqual(buffer, "weapon_healthshot"))
+						{
 							GivePlayerItem(client, buffer);
+						}
 					}
 				}
 				
@@ -1041,14 +1208,12 @@ public Action Timer_LoadoutFix(Handle timer, int client)
 			
 			SetEntityHealth(client, gShadow_CNR_Client_CT_HP[client]);
 			Entity_SetMaxHealth(client, gShadow_CNR_Client_CT_HP[client]);
-				
+			
 			if (gShadow_CNR_Client_OverHeal_Checker[client] != INVALID_HANDLE)
 			{
-				KillTimer(gShadow_CNR_Client_OverHeal_Checker[client]);
 				gShadow_CNR_Client_OverHeal_Checker[client] = INVALID_HANDLE;
+				KillHealTimer[client] = true;
 			}
-			
-			gShadow_CNR_Client_OverHeal_Checker[client] = CreateTimer(0.5, Timer_OverHeal, client, TIMER_REPEAT|TIMER_FLAG_NO_MAPCHANGE);
 			
 			SetEntProp(client, Prop_Send, "m_bHasHelmet", gShadow_CNR_Client_CT_HELMET[client]);
 			
@@ -1072,11 +1237,9 @@ public Action Timer_LoadoutFix(Handle timer, int client)
 			
 			if (gShadow_CNR_Client_OverHeal_Checker[client] != INVALID_HANDLE)
 			{
-				KillTimer(gShadow_CNR_Client_OverHeal_Checker[client]);
 				gShadow_CNR_Client_OverHeal_Checker[client] = INVALID_HANDLE;
+				KillHealTimer[client] = true;
 			}
-			
-			gShadow_CNR_Client_OverHeal_Checker[client] = CreateTimer(0.5, Timer_OverHeal, client, TIMER_REPEAT|TIMER_FLAG_NO_MAPCHANGE);
 			
 			SetEntProp(client, Prop_Send, "m_bHasHelmet", gShadow_CNR_Client_T_HELMET[client]);
 			
@@ -1090,24 +1253,6 @@ public Action Timer_LoadoutFix(Handle timer, int client)
 			
 			SetEntProp(client, Prop_Send, "m_ArmorValue", gShadow_CNR_Client_T_ARMOR[client]);
 			SetEntPropFloat(client, Prop_Send, "m_flLaggedMovementValue", gShadow_CNR_Client_T_SPEED[client]);
-		}
-		
-		if (gShadow_CNR_ForceFist)
-		{
-			int weapon;
-			while((weapon = GetPlayerWeaponSlot(client, CS_SLOT_KNIFE)) != -1)
-			{
-				RemovePlayerItem(client, weapon);
-				AcceptEntityInput(weapon, "Kill");
-			}
-		
-			int iMelee = GivePlayerItem(client, "weapon_fists");
-			EquipPlayerWeapon(client, iMelee);
-		}
-		else
-		{
-			int iMelee = GivePlayerItem(client, "weapon_knife");
-			EquipPlayerWeapon(client, iMelee);
 		}
 	}
 	return Plugin_Stop;

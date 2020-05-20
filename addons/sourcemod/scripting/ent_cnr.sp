@@ -43,7 +43,7 @@
 //Enable or Disable the roles module
 #define	MODULE_ROLES							1
 //Store support (0 - Disable Roles, 1 - Zeph Store, 2 - Shop core)
-#define	MODULE_SUPPORT							2
+#define	MODULE_SUPPORT							1
 
 //Global
 ConVar gH_Cvar_CNR_Enabled;
@@ -69,7 +69,7 @@ public Plugin myinfo =
 	name = "[CSGO] Jailbreak Classes and Roles", 
 	author = "Entity", 
 	description = "Jailbreak classes and roles", 
-	version = "0.1.2"
+	version = "0.2.0"
 };
 
 public void OnClientPostAdminCheck(int client)
