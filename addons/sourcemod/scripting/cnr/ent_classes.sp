@@ -147,13 +147,14 @@ public Action Classes_RoundStart(Event event, const char[] name, bool dontBroadc
 
 	g_hRoundTime = FindConVar("mp_roundtime");
 	g_RoundTime = GetConVarInt(g_hRoundTime) * 60;
-	if (RoundTimeTicker == null || RoundTimeTicker == INVALID_HANDLE)
+	if (RoundTimeTicker == null)
 	{
 		RoundTimeTicker = CreateTimer(1.0, Timer_RoundTimeLeft, g_RoundTime, TIMER_REPEAT|TIMER_FLAG_NO_MAPCHANGE);
 	}
 	else
 	{
 		delete RoundTimeTicker;
+		RoundTimeTicker = null;
 		RoundTimeTicker = CreateTimer(1.0, Timer_RoundTimeLeft, g_RoundTime, TIMER_REPEAT|TIMER_FLAG_NO_MAPCHANGE);
 	}
 }
@@ -174,9 +175,10 @@ public Action OnRoundEnd_Class(Event event, const char[] name, bool dontBroadcas
 		}
 	}
 	
-	if (RoundTimeTicker != null || RoundTimeTicker != INVALID_HANDLE)
+	if (RoundTimeTicker != null)
 	{
 		delete RoundTimeTicker;
+		RoundTimeTicker = null;
 	}
 }
 
