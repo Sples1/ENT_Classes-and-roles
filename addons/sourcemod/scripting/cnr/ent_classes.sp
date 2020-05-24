@@ -35,7 +35,7 @@ char gShadow_CNR_ConfigFile_CT[PLATFORM_MAX_PATH];
 ConVar g_hRoundTime;
 int g_RoundTime;
 int FreezeTime;
-Handle RoundTimeTicker;
+Handle RoundTimeTicker = null;
 bool RTT_KillYourSelf;
 
 bool gShadow_CNR_HealStarted = false;
@@ -141,22 +141,25 @@ public void Classes_OnConfigsExecuted()
 
 public Action Classes_RoundStart(Event event, const char[] name, bool dontBroadcast)
 {
-	gShadow_CNR_HealStarted = false;
-	
-	ConVar g_cvFreezeTime = FindConVar("mp_freezetime");
-	FreezeTime = GetConVarInt(g_cvFreezeTime);
-
-	g_hRoundTime = FindConVar("mp_roundtime");
-	g_RoundTime = GetConVarInt(g_hRoundTime) * 60;
-	if (RoundTimeTicker == null)
+	if(GameRules_GetProp("m_bWarmupPeriod") != 1)
 	{
-		RoundTimeTicker = CreateTimer(1.0, Timer_RoundTimeLeft, g_RoundTime, TIMER_REPEAT|TIMER_FLAG_NO_MAPCHANGE);
-	}
-	else
-	{
-		RTT_KillYourSelf = true;
+		gShadow_CNR_HealStarted = false;
 		
-		RoundTimeTicker = CreateTimer(1.0, Timer_RoundTimeLeft, g_RoundTime, TIMER_REPEAT|TIMER_FLAG_NO_MAPCHANGE);
+		ConVar g_cvFreezeTime = FindConVar("mp_freezetime");
+		FreezeTime = GetConVarInt(g_cvFreezeTime);
+
+		g_hRoundTime = FindConVar("mp_roundtime");
+		g_RoundTime = GetConVarInt(g_hRoundTime) * 60;
+		if (RoundTimeTicker == null)
+		{
+			RoundTimeTicker = CreateTimer(1.0, Timer_RoundTimeLeft, g_RoundTime, TIMER_REPEAT|TIMER_FLAG_NO_MAPCHANGE);
+		}
+		else
+		{
+			RTT_KillYourSelf = true;
+			
+			RoundTimeTicker = CreateTimer(1.0, Timer_RoundTimeLeft, g_RoundTime, TIMER_REPEAT|TIMER_FLAG_NO_MAPCHANGE);
+		}
 	}
 }
 
@@ -312,25 +315,28 @@ public void Submenu_Classes(int client)
 
 public Action OnPlayerSpawn_Class(Event event, char[] name, bool dontBroadcast)
 {
-	int client = GetClientOfUserId(event.GetInt("userid"));
-	if (IsValidClient(client))
+	if(GameRules_GetProp("m_bWarmupPeriod") != 1)
 	{
-		if (gShadow_CNR_Announce && GameRules_GetProp("m_bWarmupPeriod") == 0)
+		int client = GetClientOfUserId(event.GetInt("userid"));
+		if (IsValidClient(client))
 		{
-			CPrintToChat(client, "%s %t", gShadow_CNR_ChatBanner, "CNR Supported");
-			
-			if (gH_Cvar_CNR_AutoOpen.BoolValue)
+			if (gShadow_CNR_Announce && GameRules_GetProp("m_bWarmupPeriod") == 0)
 			{
-				Submenu_Classes(client);
+				CPrintToChat(client, "%s %t", gShadow_CNR_ChatBanner, "CNR Supported");
+				
+				if (gH_Cvar_CNR_AutoOpen.BoolValue)
+				{
+					Submenu_Classes(client);
+				}
 			}
+			
+			if (gShadow_CNR_BlockWeapons_T || gShadow_CNR_BlockWeapons_CT)
+			{
+				SDKHook(client, SDKHook_WeaponCanUse, RestrictWeapon); 
+			}
+			
+			CreateTimer(0.3, Timer_LoadoutFix, client, TIMER_FLAG_NO_MAPCHANGE);
 		}
-		
-		if (gShadow_CNR_BlockWeapons_T || gShadow_CNR_BlockWeapons_CT)
-		{
-			SDKHook(client, SDKHook_WeaponCanUse, RestrictWeapon); 
-		}
-		
-		CreateTimer(0.3, Timer_LoadoutFix, client, TIMER_FLAG_NO_MAPCHANGE);
 	}
 }
 

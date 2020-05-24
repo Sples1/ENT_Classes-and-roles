@@ -43,7 +43,7 @@
 //Enable or Disable the roles module
 #define	MODULE_ROLES							1
 //Store support (0 - Disable Roles, 1 - Zeph Store, 2 - Shop core)
-#define	MODULE_SUPPORT							0
+#define	MODULE_SUPPORT							2
 
 //Global
 ConVar gH_Cvar_CNR_Enabled;
