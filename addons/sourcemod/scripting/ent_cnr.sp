@@ -49,10 +49,12 @@
 ConVar gH_Cvar_CNR_Enabled;
 ConVar gH_Cvar_CNR_ChatPrefix;
 ConVar gH_Cvar_CNR_Logging;
+ConVar gH_Cvar_CNR_Alias;
 
 char gShadow_CNR_LogFile[PLATFORM_MAX_PATH];
 char gShadow_CNR_ChatBanner[256];
 bool gShadow_CNR_Logging;
+char gShadow_CNR_Alias[32];
 
 bool gShadow_CNR_Enabled = true;
 bool gShadow_CNR_BlockCommand[MAXPLAYERS+1] = false;
@@ -69,7 +71,7 @@ public Plugin myinfo =
 	name = "[CSGO] Jailbreak Classes and Roles", 
 	author = "Entity", 
 	description = "Jailbreak classes and roles", 
-	version = "0.2.0"
+	version = "0.2.1"
 };
 
 public void OnClientPostAdminCheck(int client)
@@ -89,11 +91,13 @@ public void OnPluginStart()
 	gH_Cvar_CNR_Enabled = CreateConVar("sm_cnr_enabled", "1", "Enable or disable jailbreak classes and roles plugin:", 0, true, 0.0, true, 1.0);
 	gH_Cvar_CNR_ChatPrefix = CreateConVar("sm_cnr_chat_banner", "{darkblue}[{lightblue}C-N-R{darkblue}]", "Edit ChatTag for CNR (Colors can be used).");
 	gH_Cvar_CNR_Logging = CreateConVar("sm_cnr_logging", "0", "Enable or disable CNR logging (credit changes and informations)", 0, true, 0.0, true, 1.0);
+	gH_Cvar_CNR_Alias = CreateConVar("sm_cnr_alias", "sm_class", "Alias to use !cnr");
 	
 	HookConVarChange(gH_Cvar_CNR_Enabled, OnCvarChange_Main);
 	HookConVarChange(gH_Cvar_CNR_ChatPrefix, OnCvarChange_Main);
 	HookConVarChange(gH_Cvar_CNR_Logging, OnCvarChange_Main);
-
+	HookConVarChange(gH_Cvar_CNR_Alias, OnCvarChange_Main);
+	
 	char Folder[256];
 	BuildPath(Path_SM, Folder, sizeof(Folder), "logs/Entity");
 	DirExistsEx(Folder);
@@ -101,6 +105,7 @@ public void OnPluginStart()
 	SetLogFile(gShadow_CNR_LogFile, "CNR-Logs", "Entity");
 	
 	RegConsoleCmd("sm_cnr", Command_ClassesAndRoles);
+	RegConsoleCmd(gShadow_CNR_Alias, Command_ClassesAndRoles);
 	
 	#if (MODULE_CLASSES == 1)
 	Classes_OnPluginStart();
@@ -177,6 +182,7 @@ public void OnConfigsExecuted()
 	char buffer[128];
 	GetConVarString(gH_Cvar_CNR_ChatPrefix, buffer, sizeof(buffer));
 	Format(gShadow_CNR_ChatBanner, sizeof(gShadow_CNR_ChatBanner), "%s{lime} ", buffer);
+	GetConVarString(gH_Cvar_CNR_Alias, gShadow_CNR_Alias, sizeof(gShadow_CNR_Alias));
 	gShadow_CNR_Logging = view_as<bool>(GetConVarInt(gH_Cvar_CNR_Logging));
 }
 
@@ -190,6 +196,8 @@ public void OnCvarChange_Main(ConVar cvar, char[] oldvalue, char[] newvalue)
 		GetConVarString(gH_Cvar_CNR_ChatPrefix, buffer, sizeof(buffer));
 		Format(gShadow_CNR_ChatBanner, sizeof(gShadow_CNR_ChatBanner), "%s{lime} ", buffer);
 	}
+	else if (cvar == gH_Cvar_CNR_Alias)
+		GetConVarString(gH_Cvar_CNR_Alias, gShadow_CNR_Alias, sizeof(gShadow_CNR_Alias));
 	else if (cvar == gH_Cvar_CNR_Logging)
 		gShadow_CNR_Logging = view_as<bool>(GetConVarInt(gH_Cvar_CNR_Logging));
 }
