@@ -1,0 +1,271 @@
+"Phrases"
+{
+	"CNR Menu NoClass"
+	{
+		"tr"		"Sınıfı Sil"
+	}
+	"CNR Wait"
+	{
+		"tr"		"Bu komutu kullanmadan önce lütfen birkaç saniye bekleyin."
+	}
+	"CNR Supported"
+	{
+		"tr"		"Sunucu C-N-R kullanır. İki ekip için de sınıfınızı veya rolünüzü seçmek için !cnr kullanın."
+	}
+	"CNR Class Not Found"
+	{
+		"tr"		"{1} sınıfı artık sunucuda mevcut değil. Sınıf ayarlanmadı."
+	}
+	"CNR Disabled"
+	{
+		"tr"		"C-N-R devre dışı olduğu için bu komutu kullanamazsınız."
+	}
+	"CNR Apply Next Round"
+	{
+		"tr"		"Seçilen sınıf bir sonraki tura uygulanacak."
+	}
+	"CNR Removal Next Round"
+	{
+		"tr"		"Sınıfınız bir sonraki turda kaldırılacak."
+	}
+	"CNR RoleApply Next Round"
+	{
+		"tr"		"Seçilen rol bir sonraki tura uygulanacak."
+	}
+	"CNR RoleRemoval Next Round"
+	{
+		"tr"		"Rolünüz bir sonraki turda kaldırılacak."
+	}
+	"CNR Description"
+	{
+		"tr"		"Açıklama"
+	}
+	"CNR Weapon Restrict"
+	{
+		"tr"		"O silahı şu anki sınıfınla kullanamazsın. Sınıfı seçmek için! Cnr kullanın."
+	}
+	"CNR Not In Team"
+	{
+		"tr"		"Sınıf seçmek için bir takımda olmalısınız."
+	}
+	"CNR No access"
+	{
+		"tr"		"Bu sınıfı kullanma izniniz yok. Sınıf ayarlanmadı."
+	}
+	"CNR Can Use Text"
+	{
+		"tr"		"{1} sınıfı şunları kullanabilir: {2}"
+	}
+	"CNR Can Use Text Empty"
+	{
+		"tr"		"{1} 'in özel bir silahı yok."
+	}
+	"CNR Loadout Text"
+	{
+		"tr"		"{1} sınıfı spawn'da {2} alır."
+	}
+	"CNR Loadout Text Empty"
+	{
+		"tr"		"{1} 'nin spawn'da fazladan bir öğesi yok."
+	}
+	"CNR No Modules"
+	{
+		"tr"		"C.N.R için etkin modül olmadığından bu menüyü açamazsınız."
+	}
+	"CNR Classes"
+	{
+		"tr"		"Sınıflar"
+	}
+	"CNR Roles"
+	{
+		"tr"		"Roller"
+	}
+	"CNR Health"
+	{
+		"tr"		"Can"
+	}
+	"CNR Armor"
+	{
+		"tr"		"Armor"
+	}
+	"CNR Helmet"
+	{
+		"tr"		"Kask"
+	}
+	"CNR Heavysuit"
+	{
+		"tr"		"Ağr zırh"
+	}
+	"CNR Speed"
+	{
+		"tr"		"Hız"
+	}
+	"CNR Loadout Menu"
+	{
+		"tr"		"Sınıf yüklemesi"
+	}
+	"CNR CanUse Menu"
+	{
+		"tr"		"Sınıf erişimi"
+	}
+	"CNR No"
+	{
+		"tr"		"Hayır"
+	}
+	"CNR Yes"
+	{
+		"tr"		"Evet"
+	}
+	"CNR Select"
+	{
+		"tr"		"Seç"
+	}
+	"CNR Selected"
+	{
+		"tr"		"Seçildi"
+	}
+	"CNR Slower"
+	{
+		"tr"		"Yavaş"
+	}
+	"CNR Normal"
+	{
+		"tr"		"Normal"
+	}
+	"CNR Faster"
+	{
+		"tr"		"Hızlı"
+	}
+	"CNR Pacific"
+	{
+		"tr"		"Pasifik"
+	}
+	"CNR Pacific Description"
+	{
+		"tr"		"Bu rol bir turda CT'lere zarar vermemesi nedeniyle {1} kredi verir."
+	}
+	"CNR Lost Pacific"
+	{
+		"tr"		"Bu tur için ödülünüzü kaybettiniz, çünkü Pasifik olarak CT'ye hasar verdiniz."
+	}
+	"CNR Survivor"
+	{
+		"tr"		"Hayatta kalan"
+	}
+	"CNR Survivor Description"
+	{
+		"tr"		"This role gives {1} credits for surviving the round."
+	}
+	"CNR Rebel"
+	{
+		"tr"		"İsyancı"
+	}
+	"CNR Rebel Description"
+	{
+		"tr"		"Bu rol, CT'lere yuvarlak uçta verilen her 25 hasardan sonra {1} kredi verir."
+	}
+	"CNR Rebel NoDamage"
+	{
+		"tr"		"Oyunculara zarar vermedin, ödül yok."
+	}
+	"CNR Assassin"
+	{
+		"tr"		"Katil"
+	}
+	"CNR Assassin Description"
+	{
+		"tr"		"Bu rol her öldürmeden sonra bir bıçak veya yumrukla {1} kredi verir."
+	}
+	"CNR Sniper"
+	{
+		"tr"		"Keskin nişancı"
+	}
+	"CNR Sniper Description"
+	{
+		"tr"		"Bu rol, keskin nişancı tüfekleriyle her öldürmeden sonra {1} kredi verir."
+	}
+	"CNR Ninja"
+	{
+		"tr"		"Ninja"
+	}
+	"CNR Ninja Description"
+	{
+		"tr"		"Bu rol, zarar görmeden turda hayatta kalmak için {1} kredi verir."
+	}
+	"CNR Lost Ninja"
+	{
+		"tr"		"Bu tur için ödülünüzü kaybettiniz, çünkü hasar gördünüz."
+	}
+	"CNR Gunslinger"
+	{
+		"tr"		"Silahşör"
+	}
+	"CNR Gunslinger Description"
+	{
+		"tr"		"Bu rol, tabancalarla yapılan her öldürmeden sonra {1} kredi verir."
+	}
+	"CNR Blaster"
+	{
+		"tr"		"Lazer"
+	}
+	"CNR Blaster Description"
+	{
+		"tr"		"Bu rol, el bombalarıyla yapılan her öldürmeden sonra {1} kredi veriyor."
+	}
+	"CNR Butcher"
+	{
+		"tr"		"Kasap"
+	}
+	"CNR Butcher Description"
+	{
+		"tr"		"Bu rol, öldürülen her CT'den sonra {1} kredi verir."
+	}
+	"CNR LR Master"
+	{
+		"tr"		"LR Master"
+	}
+	"CNR LR Master Description"
+	{
+		"tr"		"Bu rol, bir LR kazanmasının ardından {1} kredi verir."
+	}
+	"CNR Sufferer"
+	{
+		"tr"		"Dertli Kimse"
+	}
+	"CNR Sufferer Description"
+	{
+		"tr"		"Bu rol, her 25 hasardan sonra {1} kredi verir."
+	}
+	"CNR Sufferer NoDamage"
+	{
+		"tr"		"Oyuncular tarafından yaralanmadınız, bu yüzden ödül yok."
+	}
+	"CNR Headhunter"
+	{
+		"tr"		"Kafa avcısı"
+	}
+	"CNR Headhunter Description"
+	{
+		"tr"		"Bu rol her kafa vuruşundan sonra {1} kredi verir."
+	}
+	"CNR NoRoles"
+	{
+		"tr"		"Bu menüyü açamazsınız, çünkü C.N.R için etkin rol yoktur."
+	}
+	"CNR NoClasses"
+	{
+		"tr"		"Bu menüyü açamazsınız, çünkü C.N.R için etkin sınıflar yoktur."
+	}
+	"CNR Current Role Disabled"
+	{
+		"tr"		"Mevcut rolünüz devre dışı. Lütfen başka birini seçiniz."
+	}
+	"CNR Menu NoRole"
+	{
+		"tr"		"Rolü Sil"
+	}
+	"CNR Got Credits"
+	{
+		"tr"		"Rolünüz nedeniyle {1} kredi kazandınız."
+	}
+}
