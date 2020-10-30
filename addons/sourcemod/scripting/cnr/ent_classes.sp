@@ -436,6 +436,10 @@ public int ClassChoice(Menu menu, MenuAction action, int client, int itemNum)
 			CPrintToChat(client, "%s %t", gShadow_CNR_ChatBanner, "CNR Removal Next Round");
 		}
 	}
+	else if (action == MenuAction_End)
+	{
+		CloseHandle(menu);
+	}
 }
 
 void ShowDetails(int client, int team, char[] choosen)
@@ -613,6 +617,10 @@ public int DetailsChoice(Menu menu, MenuAction action, int client, int itemNum)
 				CPrintToChat(client, "%s %t", gShadow_CNR_ChatBanner, "CNR Loadout Text", gShadow_CNR_Client_TemporaryChoose[client], gShadow_CNR_Client_LoadoutTemp[client]);
 			}
 		}
+	}
+	else if (action == MenuAction_End)
+	{
+		CloseHandle(menu);
 	}
 }
 

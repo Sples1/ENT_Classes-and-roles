@@ -715,6 +715,10 @@ public int RolesMainHandler(Menu menu, MenuAction action, int client, int itemNu
 			CPrintToChat(client, "%s %t", gShadow_CNR_ChatBanner, "CNR RoleRemoval Next Round");
 		}
 	}
+	else if (action == MenuAction_End)
+	{
+		CloseHandle(menu);
+	}
 }
 
 void ShowRoleDetails(int client, char[] choosen)
@@ -776,6 +780,10 @@ public int RolesSubHandler(Menu menu, MenuAction action, int client, int itemNum
 			else if (StrEqual(gShadow_CNR_Client_Temp_Choosen[client], "sufferer")) CPrintToChat(client, "%s %t", gShadow_CNR_ChatBanner, "CNR Sufferer Description", gShadow_CNR_Role_Sufferer_Reward);
 			else if (StrEqual(gShadow_CNR_Client_Temp_Choosen[client], "headhunter")) CPrintToChat(client, "%s %t", gShadow_CNR_ChatBanner, "CNR Headhunter Description", gShadow_CNR_Role_Headhunter_Reward);
 		}
+	}
+	else if (action == MenuAction_End)
+	{
+		CloseHandle(menu);
 	}
 }
 

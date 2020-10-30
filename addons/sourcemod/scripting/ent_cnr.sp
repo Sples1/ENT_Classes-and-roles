@@ -275,6 +275,10 @@ public int MainCNRHandler(Menu menu, MenuAction action, int client, int itemNum)
 			#endif
 		}
 	}
+	else if (action == MenuAction_End)
+	{
+		CloseHandle(menu);
+	}
 }
 
 stock void CNR_AddCredit(int client, int amount)
