@@ -512,6 +512,7 @@ public Action Timer_RoundTimeLeft(Handle timer, int RoundTime)
 {
 	if (RTT_KillYourSelf)
 	{
+		RoundTimeTicker = null;
 		RTT_KillYourSelf = false;
 		return Plugin_Stop;
 	}
@@ -521,8 +522,8 @@ public Action Timer_RoundTimeLeft(Handle timer, int RoundTime)
 		{
 			g_RoundTime = g_RoundTime - 1;
 			
-			int HRoundTime = GameRules_GetProp("m_iRoundTime");
-			int ToCheckTime = (HRoundTime - FreezeTime);
+			//int HRoundTime = GameRules_GetProp("m_iRoundTime");
+			int ToCheckTime = (RoundTime - FreezeTime);
 			
 			if (ToCheckTime > g_RoundTime && !gShadow_CNR_HealStarted)
 			{
@@ -1068,8 +1069,7 @@ public Action Timer_LoadoutFix(Handle timer, int client)
 
 	if (IsValidClient(client))
 	{
-		StripAllWeapons(client);
-		RemoveDangerZone(client);
+		Client_RemoveAllWeapons(client);
 	
 		if (gShadow_CNR_ForceFist)
 		{

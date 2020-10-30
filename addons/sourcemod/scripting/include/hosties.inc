@@ -1,6 +1,6 @@
 /*
  * SourceMod Hosties Project
- * by: databomb & dataviruset
+ * by: SourceMod Hosties Dev Team
  *
  * This file is part of the SM Hosties project.
  *
@@ -68,20 +68,6 @@ stock void ShowOverlayToAll(const char[] overlaypath)
 	}
 }
 
-stock void StripAllWeapons(int client)
-{
-	int iWeaponIndex = INVALID_WEAPON;
-	for (int i = CS_SLOT_PRIMARY; i < CS_SLOT_GRENADE+1; i++)
-	{
-		iWeaponIndex = INVALID_WEAPON;
-		while ((iWeaponIndex = GetPlayerWeaponSlot(client, i)) != INVALID_WEAPON)
-		{
-			RemovePlayerItem(client, iWeaponIndex);
-			AcceptEntityInput(iWeaponIndex, "Kill");
-		}
-	}
-}
-
 stock void BlockEntity(int client, int cachedOffset)
 {
 	SetEntData(client, cachedOffset, 5, 4, true);
@@ -122,6 +108,38 @@ stock void MutePlayer(int client)
 stock void UnmutePlayer(int client)
 {
 	SetClientListeningFlags(client, VOICE_NORMAL);
+}
+
+stock void GetFlagInt(char buffer[30])
+{
+	FlagStringToInt(buffer, "a", ADMFLAG_RESERVATION);
+	FlagStringToInt(buffer, "b", ADMFLAG_GENERIC);
+	FlagStringToInt(buffer, "c", ADMFLAG_KICK);
+	FlagStringToInt(buffer, "d", ADMFLAG_BAN);
+	FlagStringToInt(buffer, "e", ADMFLAG_UNBAN);
+	FlagStringToInt(buffer, "f", ADMFLAG_SLAY);
+	FlagStringToInt(buffer, "g", ADMFLAG_CHANGEMAP);
+	FlagStringToInt(buffer, "h", ADMFLAG_CONVARS);
+	FlagStringToInt(buffer, "i", ADMFLAG_CONFIG);
+	FlagStringToInt(buffer, "j", ADMFLAG_CHAT);
+	FlagStringToInt(buffer, "k", ADMFLAG_VOTE);
+	FlagStringToInt(buffer, "l", ADMFLAG_PASSWORD);
+	FlagStringToInt(buffer, "m", ADMFLAG_RCON);
+	FlagStringToInt(buffer, "n", ADMFLAG_CHEATS);
+	FlagStringToInt(buffer, "z", ADMFLAG_ROOT);
+	FlagStringToInt(buffer, "o", ADMFLAG_CUSTOM1);
+	FlagStringToInt(buffer, "p", ADMFLAG_CUSTOM2);
+	FlagStringToInt(buffer, "q", ADMFLAG_CUSTOM3);
+	FlagStringToInt(buffer, "r", ADMFLAG_CUSTOM4);
+	FlagStringToInt(buffer, "s", ADMFLAG_CUSTOM5);
+	FlagStringToInt(buffer, "t", ADMFLAG_CUSTOM6);
+}
+
+stock void FlagStringToInt(char StrToReplace[30], char flag[10], int ReplaceWith)
+{
+	char NewFlagValue[10];
+	IntToString(ReplaceWith, NewFlagValue, sizeof(NewFlagValue));
+	ReplaceString(StrToReplace, sizeof(StrToReplace), flag, NewFlagValue, false);
 }
 
 stock void CacheTheFile(const char[] path, MediaType filetype)

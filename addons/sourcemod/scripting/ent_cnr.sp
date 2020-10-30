@@ -71,7 +71,7 @@ public Plugin myinfo =
 	name = "[CSGO] Jailbreak Classes and Roles", 
 	author = "Entity", 
 	description = "Jailbreak classes and roles", 
-	version = "0.2.1"
+	version = "0.2.2"
 };
 
 public void OnClientPostAdminCheck(int client)
@@ -275,70 +275,6 @@ public int MainCNRHandler(Menu menu, MenuAction action, int client, int itemNum)
 			#endif
 		}
 	}
-}
-
-void RemoveDangerZone(int client)
-{
-	int Healthshot = Client_GetWeaponPlayerAmmo(client, "weapon_healthshot");
-	int Snowball = Client_GetWeaponPlayerAmmo(client, "weapon_snowball");
-	int Breachcharge = Client_GetWeaponPlayerAmmo(client, "weapon_breachcharge");
-	int Tagrenade = Client_GetWeaponPlayerAmmo(client, "weapon_tagrenade");
-	int Shield = Client_GetWeaponPlayerAmmo(client, "weapon_shield");
-	int Bumpmine = Client_GetWeaponPlayerAmmo(client, "weapon_bumpmine");
-	int Fists = Client_GetWeaponPlayerAmmo(client, "weapon_fists");
-	
-	if (Healthshot != 0)
-		Client_RemoveWeapon(client, "weapon_healthshot", false);
-		
-	if (Snowball != 0)
-		Client_RemoveWeapon(client, "weapon_snowball", false);
-		
-	if (Breachcharge != 0)
-		Client_RemoveWeapon(client, "weapon_breachcharge", false);
-		
-	if (Tagrenade != 0)
-		Client_RemoveWeapon(client, "weapon_tagrenade", false);
-		
-	if (Shield != 0)
-		Client_RemoveWeapon(client, "weapon_shield", false);
-		
-	if (Bumpmine != 0)
-		Client_RemoveWeapon(client, "weapon_bumpmine", false);
-		
-	if (Fists != 0)
-		Client_RemoveWeapon(client, "weapon_fists", false);
-}
-
-void GetFlagInt(char buffer[30])
-{
-	FlagStringToInt(buffer, "a", ADMFLAG_RESERVATION);
-	FlagStringToInt(buffer, "b", ADMFLAG_GENERIC);
-	FlagStringToInt(buffer, "c", ADMFLAG_KICK);
-	FlagStringToInt(buffer, "d", ADMFLAG_BAN);
-	FlagStringToInt(buffer, "e", ADMFLAG_UNBAN);
-	FlagStringToInt(buffer, "f", ADMFLAG_SLAY);
-	FlagStringToInt(buffer, "g", ADMFLAG_CHANGEMAP);
-	FlagStringToInt(buffer, "h", 128);
-	FlagStringToInt(buffer, "i", ADMFLAG_CONFIG);
-	FlagStringToInt(buffer, "j", ADMFLAG_CHAT);
-	FlagStringToInt(buffer, "k", ADMFLAG_VOTE);
-	FlagStringToInt(buffer, "l", ADMFLAG_PASSWORD);
-	FlagStringToInt(buffer, "m", ADMFLAG_RCON);
-	FlagStringToInt(buffer, "n", ADMFLAG_CHEATS);
-	FlagStringToInt(buffer, "z", ADMFLAG_ROOT);
-	FlagStringToInt(buffer, "o", ADMFLAG_CUSTOM1);
-	FlagStringToInt(buffer, "p", ADMFLAG_CUSTOM2);
-	FlagStringToInt(buffer, "q", ADMFLAG_CUSTOM3);
-	FlagStringToInt(buffer, "r", ADMFLAG_CUSTOM4);
-	FlagStringToInt(buffer, "s", ADMFLAG_CUSTOM5);
-	FlagStringToInt(buffer, "t", ADMFLAG_CUSTOM6);
-}
-
-void FlagStringToInt(char StrToReplace[30], char flag[10], int ReplaceWith)
-{
-	char NewFlagValue[10];
-	IntToString(ReplaceWith, NewFlagValue, sizeof(NewFlagValue));
-	ReplaceString(StrToReplace, sizeof(StrToReplace), flag, NewFlagValue);
 }
 
 stock void CNR_AddCredit(int client, int amount)
